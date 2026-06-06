@@ -1,0 +1,1686 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bioquímica na Nutrição</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f8f6f1;
+  --surface: #ffffff;
+  --surface2: #f2efe8;
+  --border: #e8e3d8;
+  --text: #1a1a14;
+  --text2: #5a5748;
+  --text3: #8a8470;
+  --green: #1a3a2a;
+  --green2: #2d5a3d;
+  --green3: #3d7a52;
+  --green-light: #e8f0eb;
+  --gold: #c9a84c;
+  --gold2: #e8c97a;
+  --gold-light: #faf3e0;
+  --accent: #4a7c59;
+  --red: #c0392b;
+  --blue: #2c6e94;
+  --radius: 16px;
+  --radius-sm: 8px;
+  --shadow: 0 4px 24px rgba(26,58,42,0.08);
+  --shadow-lg: 0 12px 48px rgba(26,58,42,0.14);
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+[data-theme="dark"] {
+  --bg: #111810;
+  --surface: #1a2318;
+  --surface2: #1f2b1e;
+  --border: #2a3828;
+  --text: #f0ede5;
+  --text2: #b8b4a8;
+  --text3: #7a7870;
+  --green: #4a9a6a;
+  --green2: #5aaa78;
+  --green3: #6aba88;
+  --green-light: #1a2f20;
+  --gold: #e8c97a;
+  --gold2: #f5d990;
+  --gold-light: #2a2210;
+  --accent: #5a9a6a;
+  --shadow: 0 4px 24px rgba(0,0,0,0.3);
+  --shadow-lg: 0 12px 48px rgba(0,0,0,0.4);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);transition:var(--transition);min-height:100vh;}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:var(--surface2);}
+::-webkit-scrollbar-thumb{background:var(--green3);border-radius:3px;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(248,246,241,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:var(--transition);}
+[data-theme="dark"] nav{background:rgba(17,24,16,0.92);}
+.nav-inner{max-width:1400px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between;}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.logo-icon{width:36px;height:36px;background:linear-gradient(135deg,var(--green),var(--green3));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;}
+.logo-text{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--text);line-height:1.2;}
+.logo-sub{font-size:11px;color:var(--text3);font-weight:400;letter-spacing:0.05em;}
+.nav-actions{display:flex;align-items:center;gap:12px;}
+.search-bar{display:flex;align-items:center;gap:8px;background:var(--surface2);border:1px solid var(--border);border-radius:24px;padding:8px 16px;width:220px;transition:var(--transition);}
+.search-bar:focus-within{border-color:var(--green3);box-shadow:0 0 0 3px rgba(74,124,89,0.12);}
+.search-bar input{border:none;background:transparent;outline:none;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);width:100%;}
+.search-bar input::placeholder{color:var(--text3);}
+.btn-icon{width:40px;height:40px;border:1px solid var(--border);border-radius:10px;background:var(--surface);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;transition:var(--transition);color:var(--text2);}
+.btn-icon:hover{background:var(--green-light);border-color:var(--green3);color:var(--green);}
+
+/* HERO */
+.hero{padding:120px 24px 80px;max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
+.hero-label{display:inline-flex;align-items:center;gap:6px;background:var(--gold-light);border:1px solid var(--gold2);color:var(--gold);padding:6px 14px;border-radius:24px;font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:20px;}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(36px,5vw,60px);font-weight:700;line-height:1.1;margin-bottom:20px;color:var(--text);}
+.hero h1 em{font-style:italic;color:var(--green3);}
+.hero p{font-size:17px;color:var(--text2);line-height:1.7;margin-bottom:32px;max-width:480px;}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;}
+.btn-primary{background:linear-gradient(135deg,var(--green),var(--green3));color:#fff;border:none;padding:14px 28px;border-radius:12px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;cursor:pointer;transition:var(--transition);box-shadow:0 4px 16px rgba(26,58,42,0.25);}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(26,58,42,0.35);}
+.btn-secondary{background:transparent;color:var(--text);border:1.5px solid var(--border);padding:14px 28px;border-radius:12px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:500;cursor:pointer;transition:var(--transition);}
+.btn-secondary:hover{border-color:var(--green3);background:var(--green-light);}
+.hero-stats{display:flex;gap:32px;margin-top:40px;}
+.stat{display:flex;flex-direction:column;gap:4px;}
+.stat-num{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--green);}
+.stat-label{font-size:13px;color:var(--text3);}
+.hero-visual{position:relative;}
+.hero-card-main{background:var(--surface);border:1px solid var(--border);border-radius:24px;padding:28px;box-shadow:var(--shadow-lg);animation:float 6s ease-in-out infinite;}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
+.hero-card-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:600;margin-bottom:16px;color:var(--text);}
+.molecule-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.molecule{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:14px;text-align:center;cursor:pointer;transition:var(--transition);}
+.molecule:hover{background:var(--green-light);border-color:var(--green3);}
+.molecule-icon{font-size:24px;margin-bottom:6px;}
+.molecule-name{font-size:11px;font-weight:600;color:var(--text2);letter-spacing:0.03em;}
+.hero-badge{position:absolute;top:-20px;right:-20px;background:linear-gradient(135deg,var(--gold),var(--gold2));border-radius:16px;padding:12px 18px;box-shadow:0 8px 24px rgba(201,168,76,0.3);animation:float 6s ease-in-out infinite;animation-delay:-3s;}
+.hero-badge-text{font-size:12px;font-weight:700;color:#fff;text-align:center;}
+.hero-badge-num{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:#fff;display:block;}
+
+/* PROGRESS BAR */
+.progress-section{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:20px 24px;}
+.progress-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;gap:20px;flex-wrap:wrap;}
+.progress-label{font-size:13px;font-weight:600;color:var(--text2);white-space:nowrap;}
+.progress-bar-wrap{flex:1;min-width:200px;background:var(--surface2);border-radius:8px;height:8px;overflow:hidden;}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--green),var(--green3),var(--gold));border-radius:8px;transition:width 1s ease;}
+.progress-pct{font-family:'DM Mono',monospace;font-size:13px;color:var(--gold);font-weight:500;}
+.progress-modules{display:flex;gap:8px;flex-wrap:wrap;}
+.prog-mod{background:var(--green-light);color:var(--green);font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;}
+
+/* MAIN */
+main{max-width:1400px;margin:0 auto;padding:0 24px 80px;}
+
+/* SECTION HEADER */
+.section-header{text-align:center;padding:60px 0 40px;}
+.section-label{display:inline-block;background:var(--green-light);color:var(--green);font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:6px 16px;border-radius:20px;margin-bottom:16px;}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,42px);font-weight:700;color:var(--text);margin-bottom:12px;}
+.section-sub{font-size:16px;color:var(--text2);max-width:540px;margin:0 auto;line-height:1.6;}
+
+/* CATEGORY GRID */
+.category-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-bottom:60px;}
+.cat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;cursor:pointer;transition:var(--transition);position:relative;overflow:hidden;}
+.cat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--green),var(--gold));transform:scaleX(0);transform-origin:left;transition:var(--transition);}
+.cat-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--green3);}
+.cat-card:hover::before{transform:scaleX(1);}
+.cat-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:16px;transition:var(--transition);}
+.cat-card:hover .cat-icon{transform:scale(1.1);}
+.cat-title{font-family:'Playfair Display',serif;font-size:17px;font-weight:600;color:var(--text);margin-bottom:6px;}
+.cat-desc{font-size:13px;color:var(--text3);line-height:1.5;}
+.cat-arrow{position:absolute;right:16px;bottom:16px;color:var(--text3);transition:var(--transition);font-size:18px;}
+.cat-card:hover .cat-arrow{color:var(--green3);transform:translate(2px,-2px);}
+
+/* CONTENT AREA */
+.content-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:1100;backdrop-filter:blur(4px);}
+.content-overlay.active{display:flex;align-items:stretch;justify-content:flex-end;}
+.content-panel{width:min(800px,100vw);background:var(--bg);height:100vh;overflow-y:auto;box-shadow:-20px 0 60px rgba(0,0,0,0.2);animation:slideIn 0.35s cubic-bezier(0.4,0,0.2,1);}
+@keyframes slideIn{from{transform:translateX(100%);}to{transform:translateX(0);}}
+.panel-header{position:sticky;top:0;background:var(--surface);border-bottom:1px solid var(--border);padding:20px 28px;display:flex;align-items:center;justify-content:space-between;z-index:10;backdrop-filter:blur(20px);}
+.panel-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--text);}
+.panel-close{width:36px;height:36px;border-radius:10px;border:1px solid var(--border);background:var(--surface2);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text2);font-size:18px;transition:var(--transition);}
+.panel-close:hover{background:var(--green-light);color:var(--green);}
+.panel-body{padding:28px;}
+
+/* TABS */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px;background:var(--surface2);padding:6px;border-radius:14px;}
+.tab{padding:8px 18px;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;transition:var(--transition);color:var(--text2);border:none;background:transparent;font-family:'DM Sans',sans-serif;}
+.tab.active{background:var(--surface);color:var(--text);box-shadow:0 2px 8px rgba(0,0,0,0.08);}
+.tab-content{display:none;}
+.tab-content.active{display:block;animation:fadeIn 0.3s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+/* CONTENT BLOCKS */
+.info-block{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:20px;}
+.info-block h3{font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:var(--text);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.info-block p{color:var(--text2);line-height:1.75;font-size:15px;}
+.info-block ul{list-style:none;padding:0;}
+.info-block ul li{padding:6px 0;color:var(--text2);font-size:15px;display:flex;align-items:flex-start;gap:8px;line-height:1.6;}
+.info-block ul li::before{content:'◆';font-size:8px;color:var(--gold);margin-top:6px;flex-shrink:0;}
+.tag{display:inline-block;background:var(--green-light);color:var(--green);font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;margin:2px;}
+.tag.gold{background:var(--gold-light);color:var(--gold);}
+.tag.red{background:#fff0ee;color:var(--red);}
+.tag.blue{background:#eef4ff;color:var(--blue);}
+[data-theme="dark"] .tag.red{background:#2a1210;color:#e05a4a;}
+[data-theme="dark"] .tag.blue{background:#101e2a;color:#5a9ac9;}
+
+/* ALERT BOXES */
+.alert{border-radius:12px;padding:16px 20px;margin:12px 0;display:flex;gap:12px;align-items:flex-start;}
+.alert-icon{font-size:20px;flex-shrink:0;}
+.alert-text{font-size:14px;line-height:1.6;}
+.alert.warning{background:#fff8e0;border:1px solid #f0d060;color:#7a5a10;}
+.alert.danger{background:#fff0ee;border:1px solid #f0a090;color:#8a2010;}
+.alert.info{background:var(--green-light);border:1px solid #a0d0b0;color:#1a5a2a;}
+.alert.tip{background:var(--gold-light);border:1px solid var(--gold2);color:#7a5a10;}
+[data-theme="dark"] .alert.warning{background:#2a2010;color:#d0a040;}
+[data-theme="dark"] .alert.danger{background:#2a1210;color:#e07060;}
+[data-theme="dark"] .alert.info{background:var(--green-light);color:#6ac08a;}
+[data-theme="dark"] .alert.tip{background:var(--gold-light);color:#c9a84c;}
+
+/* TABLE */
+.nut-table{width:100%;border-collapse:collapse;font-size:14px;margin-top:12px;}
+.nut-table th{background:var(--green);color:#fff;padding:10px 14px;text-align:left;font-weight:600;font-size:12px;letter-spacing:0.04em;}
+.nut-table th:first-child{border-radius:8px 0 0 0;}
+.nut-table th:last-child{border-radius:0 8px 0 0;}
+.nut-table td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--text2);}
+.nut-table tr:hover td{background:var(--surface2);}
+.nut-table tr:last-child td{border-bottom:none;}
+
+/* FOOD GRID */
+.food-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:12px;margin-top:12px;}
+.food-item{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:14px;text-align:center;transition:var(--transition);}
+.food-item:hover{background:var(--green-light);border-color:var(--green3);}
+.food-emoji{font-size:28px;margin-bottom:6px;}
+.food-name{font-size:12px;font-weight:600;color:var(--text2);}
+
+/* QUIZ */
+.quiz-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;}
+.quiz-q{font-size:16px;font-weight:600;color:var(--text);margin-bottom:16px;line-height:1.5;}
+.quiz-options{display:grid;gap:10px;}
+.quiz-opt{background:var(--surface2);border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;cursor:pointer;font-size:14px;color:var(--text2);transition:var(--transition);font-family:'DM Sans',sans-serif;text-align:left;}
+.quiz-opt:hover{border-color:var(--green3);background:var(--green-light);}
+.quiz-opt.correct{background:#e8f5e9;border-color:#4caf50;color:#2e7d32;}
+.quiz-opt.wrong{background:#ffebee;border-color:#f44336;color:#c62828;}
+.quiz-feedback{margin-top:16px;padding:14px;border-radius:10px;font-size:14px;display:none;}
+.quiz-nav{display:flex;justify-content:space-between;margin-top:16px;align-items:center;}
+.quiz-counter{font-family:'DM Mono',monospace;font-size:13px;color:var(--text3);}
+
+/* FLASHCARD */
+.flashcard-wrap{perspective:1000px;margin-bottom:20px;}
+.flashcard{background:linear-gradient(135deg,var(--green),var(--green3));border-radius:20px;padding:40px;text-align:center;min-height:180px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform 0.6s;transform-style:preserve-3d;position:relative;}
+.flashcard.flipped{transform:rotateY(180deg);}
+.fc-front,.fc-back{backface-visibility:hidden;position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:30px;border-radius:20px;}
+.fc-back{transform:rotateY(180deg);background:linear-gradient(135deg,var(--gold),var(--gold2));}
+.fc-text{font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:#fff;line-height:1.5;}
+.fc-hint{font-size:12px;color:rgba(255,255,255,0.7);margin-top:12px;}
+
+/* VITAMINS SUB */
+.vitamin-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;}
+.vtab{padding:8px 16px;border-radius:20px;font-size:13px;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:var(--surface);color:var(--text2);transition:var(--transition);}
+.vtab.active{background:var(--green);border-color:var(--green);color:#fff;}
+.vtab-content{display:none;}
+.vtab-content.active{display:block;animation:fadeIn 0.3s ease;}
+
+/* CHART BARS */
+.bar-chart{margin-top:12px;}
+.bar-row{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+.bar-label{min-width:130px;font-size:13px;color:var(--text2);}
+.bar-track{flex:1;background:var(--surface2);border-radius:6px;height:10px;overflow:hidden;}
+.bar-fill{height:100%;border-radius:6px;background:linear-gradient(90deg,var(--green),var(--gold));transition:width 1s ease;}
+.bar-value{min-width:50px;font-family:'DM Mono',monospace;font-size:12px;color:var(--text3);text-align:right;}
+
+/* ANTIOXIDANT METERS */
+.antioxidant-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;margin-top:12px;}
+.aox-card{background:var(--surface2);border:1px solid var(--border);border-radius:14px;padding:18px;text-align:center;}
+.aox-ring{width:72px;height:72px;border-radius:50%;background:conic-gradient(var(--green) 0%, var(--surface) 0%);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;position:relative;}
+.aox-ring-inner{width:54px;height:54px;background:var(--surface2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;}
+.aox-name{font-size:13px;font-weight:600;color:var(--text);}
+.aox-level{font-size:11px;color:var(--gold);font-weight:700;margin-top:4px;}
+
+/* FASTING TIMELINE */
+.fasting-timeline{position:relative;padding-left:24px;margin-top:12px;}
+.fasting-timeline::before{content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--green),var(--gold));}
+.ft-item{position:relative;margin-bottom:24px;}
+.ft-item::before{content:'';position:absolute;left:-20px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--green);border:2px solid var(--surface);}
+.ft-time{font-family:'DM Mono',monospace;font-size:12px;color:var(--gold);font-weight:700;margin-bottom:4px;}
+.ft-title{font-size:15px;font-weight:600;color:var(--text);margin-bottom:4px;}
+.ft-desc{font-size:13px;color:var(--text2);line-height:1.6;}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .hero{grid-template-columns:1fr;gap:40px;}
+  .hero-badge{top:-10px;right:-10px;}
+  .hero-visual{order:-1;}
+  .category-grid{grid-template-columns:repeat(2,1fr);}
+  .search-bar{width:150px;}
+  .hero-stats{gap:20px;}
+  .content-panel{width:100vw;}
+}
+@media(max-width:480px){
+  .category-grid{grid-template-columns:1fr;}
+  .nav-inner{padding:0 16px;}
+  .hero{padding:100px 16px 60px;}
+  main{padding:0 16px 60px;}
+}
+
+/* TOOLTIP */
+[data-tooltip]{position:relative;}
+[data-tooltip]:hover::after{content:attr(data-tooltip);position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--text);color:var(--bg);font-size:12px;padding:6px 12px;border-radius:8px;white-space:nowrap;pointer-events:none;z-index:100;}
+
+/* SEARCH HIGHLIGHT */
+.highlight{background:var(--gold2);border-radius:2px;padding:0 2px;}
+
+/* FOOTER */
+footer{background:var(--green);color:#fff;padding:40px 24px;text-align:center;margin-top:40px;}
+footer p{opacity:0.7;font-size:14px;}
+footer strong{color:var(--gold2);}
+
+.scroll-top{position:fixed;bottom:28px;right:28px;width:44px;height:44px;background:var(--green);border-radius:12px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 16px rgba(26,58,42,0.3);transition:var(--transition);opacity:0;pointer-events:none;z-index:999;}
+.scroll-top.visible{opacity:1;pointer-events:auto;}
+.scroll-top:hover{transform:translateY(-2px);background:var(--green2);}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="#">
+      <div class="logo-icon">🧬</div>
+      <div>
+        <div class="logo-text">Bioquímica</div>
+        <div class="logo-sub">na Nutrição</div>
+      </div>
+    </a>
+    <div class="nav-actions">
+      <div class="search-bar">
+        <span>🔍</span>
+        <input type="text" placeholder="Buscar tópico..." id="searchInput" oninput="handleSearch(this.value)">
+      </div>
+      <button class="btn-icon" onclick="toggleDark()" id="themeBtn" data-tooltip="Modo escuro">🌙</button>
+      <button class="btn-icon" onclick="showQuiz()" data-tooltip="Quiz">🧠</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <div class="hero-label">🎓 Plataforma de Estudos Premium</div>
+    <h1>Bioquímica<br><em>aplicada</em> à<br>Nutrição</h1>
+    <p>Explore profundamente os mecanismos bioquímicos que fundamentam a nutrição humana. Conteúdo universitário, visual e organizado.</p>
+    <div class="hero-cta">
+      <button class="btn-primary" onclick="scrollToTopics()">Explorar Tópicos →</button>
+      <button class="btn-secondary" onclick="showFlashcards()">📇 Flashcards</button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-num">11</span><span class="stat-label">Categorias</span></div>
+      <div class="stat"><span class="stat-num">80+</span><span class="stat-label">Tópicos</span></div>
+      <div class="stat"><span class="stat-num">50+</span><span class="stat-label">Curiosidades</span></div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-card-main">
+      <div class="hero-card-title">🔬 Moléculas Essenciais</div>
+      <div class="molecule-grid">
+        <div class="molecule" onclick="openPanel('vitaminas')"><div class="molecule-icon">💊</div><div class="molecule-name">Vitaminas</div></div>
+        <div class="molecule" onclick="openPanel('minerais')"><div class="molecule-icon">⚗️</div><div class="molecule-name">Minerais</div></div>
+        <div class="molecule" onclick="openPanel('proteinas')"><div class="molecule-icon">🔗</div><div class="molecule-name">Proteínas</div></div>
+        <div class="molecule" onclick="openPanel('lipideos')"><div class="molecule-icon">🫧</div><div class="molecule-name">Lipídeos</div></div>
+        <div class="molecule" onclick="openPanel('carboidratos')"><div class="molecule-icon">⚡</div><div class="molecule-name">Carboidratos</div></div>
+        <div class="molecule" onclick="openPanel('metabolismo')"><div class="molecule-icon">🔄</div><div class="molecule-name">Metabolismo</div></div>
+      </div>
+    </div>
+    <div class="hero-badge">
+      <span class="hero-badge-num">A+</span>
+      <div class="hero-badge-text">Conteúdo<br>Científico</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRESS -->
+<div class="progress-section">
+  <div class="progress-inner">
+    <span class="progress-label">📊 Progresso de Estudos</span>
+    <div class="progress-bar-wrap"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+    <span class="progress-pct" id="progressPct">0%</span>
+    <div class="progress-modules" id="progressMods"></div>
+  </div>
+</div>
+
+<!-- MAIN CATEGORIES -->
+<main id="topicsSection">
+  <div class="section-header">
+    <div class="section-label">Módulos de Estudo</div>
+    <h2 class="section-title">Escolha uma categoria para explorar</h2>
+    <p class="section-sub">Clique em qualquer card para acessar o conteúdo completo com explicações bioquímicas, tabelas e exercícios.</p>
+  </div>
+
+  <div class="category-grid" id="categoryGrid">
+    <div class="cat-card" onclick="openPanel('vitaminas')">
+      <div class="cat-icon" style="background:#e8f5e9">💊</div>
+      <div class="cat-title">Vitaminas</div>
+      <div class="cat-desc">A, B, C, D, E, K — funções, deficiências e fontes.</div>
+      <div class="cat-arrow">↗</div>
+    </div>
+    <div class="cat-card" onclick="openPanel('minerais')">
+      <div class="cat-icon" style="background:#e3f2fd">⚗️</div>
+      <div class="cat-title">Minerais</div>
+      <div class="cat-desc">Ferro, magnésio, zinco, cálcio, potássio e mais.</div>
+      <div class="cat-arrow">↗</div>
+    </div>
+    <div class="cat-card" onclick="openPanel('antioxidantes')">
+      <div class="cat-icon" style="background:#fce4ec">🛡️</div>
+      <div class="cat-title">Antioxidantes</div>
+      <div class="cat-desc">Estresse oxidativo, radicais livres e proteção celular.</div>
+      <div class="cat-arrow">↗</div>
+    </div>
+    <div class="cat-card" onclick="openPanel('jejum')">
+      <div class="cat-icon" style="background:#fff8e1">⏳</div>
+      <div class="cat-title">Jejum & Ciclo Alimentado</div>
+      <div class="cat-desc">Intermittente, cetose, glicogênio e metabolismo.</div>
+      <div class="cat-arrow">↗</div>
+    </div>
+    <div class="cat-card" onclick="openPanel('proteinas')">
+      <div class="cat-icon" style="background:#ede7f6">🔗</div>
+      <div class="cat-title">Proteínas</div>
+      <div class="cat-desc">Aminoácidos, síntese muscular e absorção.</div>
+      <div class="cat-arrow">↗</div>
+    </div>
+    <div class="cat-card" onclick="openPanel('lipideos')">
+      <div class="cat-icon" style="background:#e8eaf6">🫧</div>
+      <div class="cat-title">Lipídeos</div>
+      <div class="cat-desc">Gorduras boas e ruins, ômega-3 e hormônios.</div>
+      <div class="cat-arrow">↗</div>
+    </div>
+    <div class="cat-card" onclick="openPanel('carboidratos')">
+      <div class="cat-icon" style="background:#e0f7fa">⚡</div>
+      <div class="cat-title">Carboidratos</div>
+      <div class="cat-desc">Índice glicêmico, fibras e energia celular.</div>
+      <div class="cat-arrow">↗</div>
+    </div>
+    <div class="cat-card" onclick="openPanel('funcionais')">
+      <div class="cat-icon" style="background:#f9fbe7">🌿</div>
+      <div class="cat-title">Alimentos Funcionais</div>
+      <div class="cat-desc">Probióticos, prebióticos e compostos bioativos.</div>
+      <div class="cat-arrow">↗</div>
+    </div>
+    <div class="cat-card" onclick="openPanel('metabolismo')">
+      <div class="cat-icon" style="background:#fff3e0">🔄</div>
+      <div class="cat-title">Metabolismo</div>
+      <div class="cat-desc">Glicólise, Krebs, beta-oxidação e ATP.</div>
+      <div class="cat-arrow">↗</div>
+    </div>
+    <div class="cat-card" onclick="openPanel('intestinal')">
+      <div class="cat-icon" style="background:#f3e5f5">🦠</div>
+      <div class="cat-title">Saúde Intestinal</div>
+      <div class="cat-desc">Microbioma, permeabilidade e eixo intestino-cérebro.</div>
+      <div class="cat-arrow">↗</div>
+    </div>
+    <div class="cat-card" onclick="openPanel('hidratacao')">
+      <div class="cat-icon" style="background:#e1f5fe">💧</div>
+      <div class="cat-title">Hidratação</div>
+      <div class="cat-desc">Equilíbrio hídrico, eletrólitos e desempenho.</div>
+      <div class="cat-arrow">↗</div>
+    </div>
+  </div>
+</main>
+
+<!-- CONTENT OVERLAY -->
+<div class="content-overlay" id="overlay" onclick="closePanel(event)">
+  <div class="content-panel" id="contentPanel">
+    <div class="panel-header">
+      <div class="panel-title" id="panelTitle">—</div>
+      <button class="panel-close" onclick="closeOverlay()">✕</button>
+    </div>
+    <div class="panel-body" id="panelBody"></div>
+  </div>
+</div>
+
+<footer>
+  <p>🧬 <strong>Bioquímica na Nutrição</strong> — Plataforma de Estudos Científicos<br>
+  Conteúdo educacional baseado em evidências científicas atualizadas.</p>
+</footer>
+
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+// ===== DATA =====
+const content = {
+  vitaminas: {
+    title: '💊 Vitaminas',
+    html: `
+      <div class="vitamin-tabs">
+        <button class="vtab active" onclick="showVTab('vA',this)">Vitamina A</button>
+        <button class="vtab" onclick="showVTab('vB',this)">Complexo B</button>
+        <button class="vtab" onclick="showVTab('vC',this)">Vitamina C</button>
+        <button class="vtab" onclick="showVTab('vD',this)">Vitamina D</button>
+        <button class="vtab" onclick="showVTab('vE',this)">Vitamina E</button>
+        <button class="vtab" onclick="showVTab('vK',this)">Vitamina K</button>
+      </div>
+
+      <div id="vA" class="vtab-content active">
+        <div class="info-block">
+          <h3>🔬 Função Bioquímica</h3>
+          <p>A vitamina A (retinol) é lipossolúvel. Age como ligante do receptor nuclear RAR/RXR, regulando a expressão gênica. É precursora do retinal (visual) e do ácido retinoico (diferenciação celular).</p>
+          <div style="margin-top:12px"><span class="tag">Lipossolúvel</span><span class="tag gold">Antioxidante</span><span class="tag blue">Crescimento</span></div>
+        </div>
+        <div class="info-block">
+          <h3>⚡ Funções no Organismo</h3>
+          <ul>
+            <li>Visão: componente da rodopsina (visão noturna)</li>
+            <li>Diferenciação de células epiteliais e imunes</li>
+            <li>Síntese de glicoproteínas e proteoglicanas</li>
+            <li>Desenvolvimento fetal e crescimento ósseo</li>
+            <li>Regulação do sistema imune (linfócitos T)</li>
+          </ul>
+        </div>
+        <div class="alert danger"><span class="alert-icon">⚠️</span><div class="alert-text"><strong>Deficiência:</strong> Cegueira noturna, xeroftalmia, maior suscetibilidade a infecções, retardo no crescimento em crianças.</div></div>
+        <div class="alert warning"><span class="alert-icon">⚠️</span><div class="alert-text"><strong>Excesso (toxicidade):</strong> Dores de cabeça, enjoo, dano hepático, teratogênico em gestantes. Cuidado com suplementação excessiva.</div></div>
+        <div class="info-block">
+          <h3>🍎 Alimentos Ricos</h3>
+          <div class="food-grid">
+            <div class="food-item"><div class="food-emoji">🥕</div><div class="food-name">Cenoura</div></div>
+            <div class="food-item"><div class="food-emoji">🍠</div><div class="food-name">Batata-doce</div></div>
+            <div class="food-item"><div class="food-emoji">🥬</div><div class="food-name">Espinafre</div></div>
+            <div class="food-item"><div class="food-emoji">🥭</div><div class="food-name">Manga</div></div>
+            <div class="food-item"><div class="food-emoji">🧈</div><div class="food-name">Manteiga</div></div>
+            <div class="food-item"><div class="food-emoji">🥚</div><div class="food-name">Ovo</div></div>
+          </div>
+        </div>
+        <div class="alert tip"><span class="alert-icon">💡</span><div class="alert-text"><strong>Curiosidade:</strong> O beta-caroteno é um pró-vitamina A encontrado em vegetais alaranjados. O organismo converte conforme a necessidade — sem risco de toxicidade!</div></div>
+        <table class="nut-table"><thead><tr><th>Indicador</th><th>Valor</th></tr></thead><tbody>
+          <tr><td>RDA Adultos</td><td>700–900 µg RAE/dia</td></tr>
+          <tr><td>UL (limite seguro)</td><td>3.000 µg/dia</td></tr>
+          <tr><td>Absorção</td><td>Melhor com gordura</td></tr>
+        </tbody></table>
+      </div>
+
+      <div id="vB" class="vtab-content">
+        <div class="info-block">
+          <h3>🔬 Complexo B — Visão Geral</h3>
+          <p>O complexo B é formado por 8 vitaminas hidrossolúveis que atuam principalmente como coenzimas no metabolismo energético, síntese de DNA, neurotransmissores e eritrócitos.</p>
+        </div>
+        <div class="info-block">
+          <h3>📋 Vitaminas do Complexo B</h3>
+          <ul>
+            <li><strong>B1 (Tiamina):</strong> Coenzima TPP — descarboxilação oxidativa e ciclo de Krebs</li>
+            <li><strong>B2 (Riboflavina):</strong> FAD e FMN — cadeia respiratória mitocondrial</li>
+            <li><strong>B3 (Niacina):</strong> NAD⁺ e NADP⁺ — mais de 400 reações redox celulares</li>
+            <li><strong>B5 (Ácido Pantotênico):</strong> Coenzima A — acetil-CoA e β-oxidação</li>
+            <li><strong>B6 (Piridoxina):</strong> PLP — transaminações e síntese de neurotransmissores</li>
+            <li><strong>B7 (Biotina):</strong> Carboxilações — síntese de ácidos graxos</li>
+            <li><strong>B9 (Folato):</strong> Doação de carbono — síntese de DNA e divisão celular</li>
+            <li><strong>B12 (Cobalamina):</strong> Metabolismo de homocisteína — mielinização neuronal</li>
+          </ul>
+        </div>
+        <div class="alert info"><span class="alert-icon">ℹ️</span><div class="alert-text"><strong>B9 e B12:</strong> Deficiência de folato na gestação causa defeitos do tubo neural. B12 deficiente causa anemia megaloblástica e danos neurológicos — especialmente em veganos.</div></div>
+        <div class="info-block">
+          <h3>🍎 Fontes Principais</h3>
+          <div class="food-grid">
+            <div class="food-item"><div class="food-emoji">🥩</div><div class="food-name">Carnes</div></div>
+            <div class="food-item"><div class="food-emoji">🐟</div><div class="food-name">Peixes</div></div>
+            <div class="food-item"><div class="food-emoji">🥚</div><div class="food-name">Ovos</div></div>
+            <div class="food-item"><div class="food-emoji">🌾</div><div class="food-name">Cereais integrais</div></div>
+            <div class="food-item"><div class="food-emoji">🥦</div><div class="food-name">Brócolis (B9)</div></div>
+            <div class="food-item"><div class="food-emoji">🫘</div><div class="food-name">Leguminosas</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="vC" class="vtab-content">
+        <div class="info-block">
+          <h3>🔬 Função Bioquímica</h3>
+          <p>O ácido ascórbico é hidrossolúvel e potente antioxidante. Doa elétrons para enzimas dependentes de cobre e ferro. É essencial para a hidroxilação de prolina e lisina na síntese de colágeno (prolil-hidroxilase).</p>
+          <div style="margin-top:12px"><span class="tag">Hidrossolúvel</span><span class="tag gold">Antioxidante</span><span class="tag blue">Imunidade</span></div>
+        </div>
+        <div class="info-block">
+          <h3>⚡ Funções</h3>
+          <ul>
+            <li>Síntese de colágeno (estabilidade de pele, vasos e ossos)</li>
+            <li>Regeneração de vitamina E oxidada</li>
+            <li>Potencializa absorção de ferro não-heme (converte Fe³⁺→Fe²⁺)</li>
+            <li>Síntese de carnitina, norepinefrina e ácidos biliares</li>
+            <li>Imunoestimulante: neutrófilos acumulam 50–100× mais que plasma</li>
+          </ul>
+        </div>
+        <div class="alert danger"><span class="alert-icon">⚠️</span><div class="alert-text"><strong>Escorbuto:</strong> Deficiência grave de vitamina C. Causa hemorragias, perda de dentes, cicatrização deficiente e fadiga intensa. Foi fatal em navegadores por séculos.</div></div>
+        <div class="info-block">
+          <h3>🍊 Alimentos Ricos</h3>
+          <div class="food-grid">
+            <div class="food-item"><div class="food-emoji">🍊</div><div class="food-name">Laranja</div></div>
+            <div class="food-item"><div class="food-emoji">🫑</div><div class="food-name">Pimentão</div></div>
+            <div class="food-item"><div class="food-emoji">🥝</div><div class="food-name">Kiwi</div></div>
+            <div class="food-item"><div class="food-emoji">🍓</div><div class="food-name">Morango</div></div>
+            <div class="food-item"><div class="food-emoji">🥦</div><div class="food-name">Brócolis</div></div>
+            <div class="food-item"><div class="food-emoji">🍋</div><div class="food-name">Limão</div></div>
+          </div>
+        </div>
+        <table class="nut-table"><thead><tr><th>Referência</th><th>Dose</th></tr></thead><tbody>
+          <tr><td>RDA Adultos</td><td>75–90 mg/dia</td></tr>
+          <tr><td>Fumantes (+35 mg)</td><td>110–125 mg/dia</td></tr>
+          <tr><td>UL</td><td>2.000 mg/dia</td></tr>
+        </tbody></table>
+      </div>
+
+      <div id="vD" class="vtab-content">
+        <div class="info-block">
+          <h3>☀️ Vitamina D — O "Hormônio Solar"</h3>
+          <p>A vitamina D3 (colecalciferol) é produzida na pele por UVB. É convertida no fígado em 25(OH)D₃ e nos rins em 1,25(OH)₂D₃ (calcitriol ativo), que age como hormônio esteroide ligando-se ao receptor VDR em mais de 30 tecidos.</p>
+          <div style="margin-top:12px"><span class="tag">Lipossolúvel</span><span class="tag gold">Hormônio</span><span class="tag blue">Ossos</span></div>
+        </div>
+        <div class="info-block">
+          <h3>⚡ Funções</h3>
+          <ul>
+            <li>Absorção intestinal de cálcio e fósforo</li>
+            <li>Mineralização óssea e remodelação</li>
+            <li>Regulação do sistema imune (Th1/Th2)</li>
+            <li>Expressão de mais de 1.000 genes</li>
+            <li>Proteção cardiovascular e neuromuscular</li>
+            <li>Reduz risco de câncer colorretal e mama</li>
+          </ul>
+        </div>
+        <div class="alert danger"><span class="alert-icon">⚠️</span><div class="alert-text"><strong>Deficiência (raquitismo/osteomalácia):</strong> Fraqueza muscular, dor óssea, maior risco de fratura, depressão e infecções recorrentes. Afeta ~1 bilhão de pessoas no mundo.</div></div>
+        <div class="info-block"><h3>🍎 Fontes</h3>
+          <div class="food-grid">
+            <div class="food-item"><div class="food-emoji">☀️</div><div class="food-name">Sol (UVB)</div></div>
+            <div class="food-item"><div class="food-emoji">🐟</div><div class="food-name">Salmão</div></div>
+            <div class="food-item"><div class="food-emoji">🥚</div><div class="food-name">Gema de ovo</div></div>
+            <div class="food-item"><div class="food-emoji">🍄</div><div class="food-name">Cogumelos</div></div>
+            <div class="food-item"><div class="food-emoji">🥛</div><div class="food-name">Leite fortif.</div></div>
+          </div>
+        </div>
+        <div class="alert tip"><span class="alert-icon">💡</span><div class="alert-text"><strong>Dica:</strong> 10–15 minutos de sol nos braços e pernas entre 10h–14h supre a necessidade diária para a maioria das pessoas de pele clara.</div></div>
+      </div>
+
+      <div id="vE" class="vtab-content">
+        <div class="info-block">
+          <h3>🔬 Vitamina E — Antioxidante Lipossolúvel</h3>
+          <p>O alfa-tocoferol é o principal isômero da vitamina E. Integra-se às membranas fosfolipídicas, interrompendo reações em cadeia de peroxidação lipídica por doação de H· ao radical peroxil (LOO·).</p>
+        </div>
+        <div class="info-block"><h3>⚡ Funções</h3>
+          <ul>
+            <li>Proteção das membranas celulares contra lipoperoxidação</li>
+            <li>Modulação da sinalização celular (PKC, NF-κB)</li>
+            <li>Anti-inflamatório: inibe tromboxano e agrega plaquetas</li>
+            <li>Regenerado pela vitamina C no ciclo de antioxidantes</li>
+          </ul>
+        </div>
+        <div class="info-block"><h3>🍎 Fontes</h3>
+          <div class="food-grid">
+            <div class="food-item"><div class="food-emoji">🥑</div><div class="food-name">Abacate</div></div>
+            <div class="food-item"><div class="food-emoji">🌻</div><div class="food-name">Girassol</div></div>
+            <div class="food-item"><div class="food-emoji">🌰</div><div class="food-name">Amêndoas</div></div>
+            <div class="food-item"><div class="food-emoji">🫒</div><div class="food-name">Azeite</div></div>
+            <div class="food-item"><div class="food-emoji">🌾</div><div class="food-name">Gérmen de trigo</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="vK" class="vtab-content">
+        <div class="info-block">
+          <h3>🔬 Vitamina K — Coagulação e Ossos</h3>
+          <p>Existem duas formas: K1 (filoquinona, vegetais) e K2 (menaquinonas, fermentação bacteriana). Atuam como cofator da γ-glutamil carboxilase, que ativa fatores de coagulação (II, VII, IX, X) e proteínas ósseas (osteocalcina).</p>
+        </div>
+        <div class="info-block"><h3>⚡ Funções</h3>
+          <ul>
+            <li>Coagulação sanguínea: ativação de fatores dependentes de vitamina K</li>
+            <li>Mineralização óssea via osteocalcina carboxilada</li>
+            <li>Inibição de calcificação arterial (Matrix Gla Protein)</li>
+            <li>K2 direciona cálcio para ossos, afastando das artérias</li>
+          </ul>
+        </div>
+        <div class="alert warning"><span class="alert-icon">⚠️</span><div class="alert-text"><strong>Warfarina:</strong> Anticoagulante que bloqueia a vitamina K. Pacientes em uso de warfarina devem manter consumo estável de vitamina K para não alterar o INR.</div></div>
+        <div class="info-block"><h3>🍎 Fontes</h3>
+          <div class="food-grid">
+            <div class="food-item"><div class="food-emoji">🥬</div><div class="food-name">Couve</div></div>
+            <div class="food-item"><div class="food-emoji">🥦</div><div class="food-name">Brócolis</div></div>
+            <div class="food-item"><div class="food-emoji">🫙</div><div class="food-name">Natto (K2)</div></div>
+            <div class="food-item"><div class="food-emoji">🧀</div><div class="food-name">Queijo (K2)</div></div>
+          </div>
+        </div>
+      </div>
+    `
+  },
+  minerais: {
+    title: '⚗️ Minerais',
+    html: `
+      <div class="tabs">
+        <button class="tab active" onclick="showTab('mFerro',this)">Ferro</button>
+        <button class="tab" onclick="showTab('mMag',this)">Magnésio</button>
+        <button class="tab" onclick="showTab('mZinco',this)">Zinco</button>
+        <button class="tab" onclick="showTab('mCalcio',this)">Cálcio</button>
+        <button class="tab" onclick="showTab('mPot',this)">Potássio</button>
+        <button class="tab" onclick="showTab('mSel',this)">Selênio</button>
+      </div>
+      <div id="mFerro" class="tab-content active">
+        <div class="info-block"><h3>⚗️ Ferro — Transporte de Oxigênio</h3>
+          <p>O ferro é essencial à hemoglobina (ligação O₂) e mioglobina. Existe como ferro heme (Fe²⁺, carnes) com absorção de 15–35%, e não-heme (Fe³⁺, vegetais) com absorção de 2–20%, dependente do pH e de facilitadores.</p>
+          <span class="tag">Essencial</span><span class="tag gold">Energia</span></div>
+        <div class="info-block"><h3>⚡ Funções</h3><ul>
+          <li>Componente da hemoglobina e mioglobina</li>
+          <li>Cofator de enzimas mitocondriais (citocromo c oxidase)</li>
+          <li>Síntese de neurotransmissores (dopamina, serotonina)</li>
+          <li>Função imune — burst oxidativo de neutrófilos</li>
+        </ul></div>
+        <div class="alert info"><span class="alert-icon">💡</span><div class="alert-text">Consumir vitamina C junto ao ferro não-heme aumenta sua absorção em até 3–6×. Já chá, café e cálcio inibem a absorção.</div></div>
+        <div class="alert danger"><span class="alert-icon">⚠️</span><div class="alert-text"><strong>Deficiência (anemia ferropriva):</strong> Fadiga, palidez, taquicardia, queda de cabelo, prejuízo cognitivo. Mais comum em mulheres em idade fértil.</div></div>
+        <div class="info-block"><h3>🍎 Fontes</h3>
+          <div class="food-grid">
+            <div class="food-item"><div class="food-emoji">🥩</div><div class="food-name">Carne vermelha</div></div>
+            <div class="food-item"><div class="food-emoji">🫀</div><div class="food-name">Fígado</div></div>
+            <div class="food-item"><div class="food-emoji">🫘</div><div class="food-name">Feijão</div></div>
+            <div class="food-item"><div class="food-emoji">🥬</div><div class="food-name">Espinafre</div></div>
+            <div class="food-item"><div class="food-emoji">🌾</div><div class="food-name">Aveia</div></div>
+          </div>
+        </div>
+      </div>
+      <div id="mMag" class="tab-content">
+        <div class="info-block"><h3>⚗️ Magnésio — O Mineral Mestre</h3>
+          <p>O magnésio é cofator de mais de 300 enzimas, incluindo todas as kinases dependentes de ATP. Estabiliza o complexo ATP-Mg²⁺, essencial para a fosforilação. É o 4º mineral mais abundante no corpo.</p></div>
+        <div class="info-block"><h3>⚡ Funções</h3><ul>
+          <li>Cofator de ATPases, kinases e polimerase de DNA</li>
+          <li>Regulação do canal NMDA (função cognitiva)</li>
+          <li>Contração e relaxamento muscular</li>
+          <li>Síntese de proteínas e controle da glicemia</li>
+          <li>Anti-hipertensivo: relaxamento vascular</li>
+        </ul></div>
+        <div class="alert danger"><span class="alert-icon">⚠️</span><div class="alert-text"><strong>Deficiência:</strong> Câimbras, insônia, ansiedade, hipertensão, resistência à insulina e arritmias. Muito comum em populações com dieta ultraprocessada.</div></div>
+        <div class="info-block"><h3>🍎 Fontes</h3>
+          <div class="food-grid">
+            <div class="food-item"><div class="food-emoji">🌰</div><div class="food-name">Castanhas</div></div>
+            <div class="food-item"><div class="food-emoji">🌱</div><div class="food-name">Sementes</div></div>
+            <div class="food-item"><div class="food-emoji">🥬</div><div class="food-name">Folhas escuras</div></div>
+            <div class="food-item"><div class="food-emoji">🍫</div><div class="food-name">Cacau</div></div>
+            <div class="food-item"><div class="food-emoji">🫘</div><div class="food-name">Leguminosas</div></div>
+          </div>
+        </div>
+      </div>
+      <div id="mZinco" class="tab-content">
+        <div class="info-block"><h3>⚗️ Zinco — Imunidade e DNA</h3>
+          <p>O zinco é componente estrutural de mais de 300 proteínas (dedos de zinco — zinc fingers) que regulam a expressão gênica. É essencial para a atividade da SOD (superóxido dismutase) e timulina (hormônio tímico).</p></div>
+        <div class="info-block"><h3>⚡ Funções</h3><ul>
+          <li>Diferenciação e proliferação de linfócitos T</li>
+          <li>Síntese e reparo de DNA</li>
+          <li>Antioxidante via SOD cobre-zinco</li>
+          <li>Cicatrização e integridade da barreira intestinal</li>
+          <li>Síntese de insulina e função testicular</li>
+        </ul></div>
+        <div class="info-block"><h3>🍎 Fontes</h3>
+          <div class="food-grid">
+            <div class="food-item"><div class="food-emoji">🦪</div><div class="food-name">Ostras</div></div>
+            <div class="food-item"><div class="food-emoji">🥩</div><div class="food-name">Carne</div></div>
+            <div class="food-item"><div class="food-emoji">🌻</div><div class="food-name">Sementes abóbora</div></div>
+            <div class="food-item"><div class="food-emoji">🌾</div><div class="food-name">Cereais integrais</div></div>
+          </div>
+        </div>
+        <div class="alert tip"><span class="alert-icon">💡</span><div class="alert-text">Fitatos de cereais e leguminosas inibem a absorção do zinco. Deixar de molho ou germinar os grãos reduz o fitato e melhora a biodisponibilidade.</div></div>
+      </div>
+      <div id="mCalcio" class="tab-content">
+        <div class="info-block"><h3>⚗️ Cálcio — Estrutura e Sinalização</h3>
+          <p>O cálcio é o mineral mais abundante (1% do peso corporal, 99% nos ossos). Como segundo mensageiro intracelular, o Ca²⁺ ativa a calmodulina, disparando a contração muscular, secreção hormonal e transmissão nervosa.</p></div>
+        <div class="info-block"><h3>⚡ Funções</h3><ul>
+          <li>Mineralização óssea e dentária</li>
+          <li>Acoplamento excitação-contração muscular</li>
+          <li>Coagulação sanguínea (fator IV)</li>
+          <li>Transmissão de impulsos nervosos</li>
+          <li>Sinalização intracelular via calmodulina</li>
+        </ul></div>
+        <div class="info-block"><h3>🍎 Fontes</h3>
+          <div class="food-grid">
+            <div class="food-item"><div class="food-emoji">🥛</div><div class="food-name">Leite</div></div>
+            <div class="food-item"><div class="food-emoji">🧀</div><div class="food-name">Queijo</div></div>
+            <div class="food-item"><div class="food-emoji">🥬</div><div class="food-name">Couve</div></div>
+            <div class="food-item"><div class="food-emoji">🐟</div><div class="food-name">Sardinhas</div></div>
+            <div class="food-item"><div class="food-emoji">🫘</div><div class="food-name">Tofu</div></div>
+          </div>
+        </div>
+      </div>
+      <div id="mPot" class="tab-content">
+        <div class="info-block"><h3>⚗️ Potássio — Equilíbrio Elétrico</h3>
+          <p>Maior eletrólito intracelular (98% dentro das células). Mantém o potencial de repouso da membrana via bomba Na⁺/K⁺-ATPase. Essencial para ritmo cardíaco e contração muscular.</p></div>
+        <div class="info-block"><h3>⚡ Funções</h3><ul>
+          <li>Potencial de membrana e transmissão nervosa</li>
+          <li>Regulação da pressão arterial (antagoniza sódio)</li>
+          <li>Contração do músculo cardíaco</li>
+          <li>Síntese de glicogênio e proteínas</li>
+        </ul></div>
+        <div class="info-block"><h3>🍎 Fontes</h3>
+          <div class="food-grid">
+            <div class="food-item"><div class="food-emoji">🍌</div><div class="food-name">Banana</div></div>
+            <div class="food-item"><div class="food-emoji">🥑</div><div class="food-name">Abacate</div></div>
+            <div class="food-item"><div class="food-emoji">🍠</div><div class="food-name">Batata-doce</div></div>
+            <div class="food-item"><div class="food-emoji">🫘</div><div class="food-name">Feijão</div></div>
+          </div>
+        </div>
+      </div>
+      <div id="mSel" class="tab-content">
+        <div class="info-block"><h3>⚗️ Selênio — Protetor da Tireoide</h3>
+          <p>Componente das selenoproteínas (selenocisteína), incluindo glutationa peroxidase (GPx) e tioredoxina redutase. Cofator essencial das deiodinases tireóideas (conversão T4→T3).</p></div>
+        <div class="info-block"><h3>⚡ Funções</h3><ul>
+          <li>Antioxidante via glutationa peroxidase</li>
+          <li>Metabolismo dos hormônios tireóideos</li>
+          <li>Imunidade e proteção contra câncer</li>
+          <li>Fertilidade masculina (integridade do DNA espermático)</li>
+        </ul></div>
+        <div class="info-block"><h3>🍎 Fontes</h3>
+          <div class="food-grid">
+            <div class="food-item"><div class="food-emoji">🌰</div><div class="food-name">Castanha-do-Pará</div></div>
+            <div class="food-item"><div class="food-emoji">🐟</div><div class="food-name">Atum</div></div>
+            <div class="food-item"><div class="food-emoji">🥩</div><div class="food-name">Carnes</div></div>
+            <div class="food-item"><div class="food-emoji">🥚</div><div class="food-name">Ovos</div></div>
+          </div>
+        </div>
+        <div class="alert tip"><span class="alert-icon">💡</span><div class="alert-text">1–2 castanhas-do-Pará por dia supre toda a necessidade diária de selênio. Doses altas (>400 µg/dia) causam selenose: queda de cabelo, unhas frágeis e odor de alho.</div></div>
+      </div>
+    `
+  },
+  antioxidantes: {
+    title: '🛡️ Antioxidantes',
+    html: `
+      <div class="info-block">
+        <h3>🔥 Estresse Oxidativo e Radicais Livres</h3>
+        <p>Radicais livres são espécies com elétron desemparelhado (ROS/RNS) que reagem indiscriminadamente com lipídios de membrana, DNA e proteínas. Quando a produção supera a defesa antioxidante, ocorre estresse oxidativo — ligado ao envelhecimento, câncer e doenças crônicas.</p>
+      </div>
+      <div class="info-block">
+        <h3>⚙️ Fontes de Radicais Livres</h3>
+        <ul>
+          <li>Metabolismo aeróbico mitocondrial (2–3% do O₂ vira •O₂⁻)</li>
+          <li>Radiação UV, poluição e tabagismo</li>
+          <li>Inflamação crônica e infecções</li>
+          <li>Exercício extenuante sem recuperação adequada</li>
+          <li>Dieta ultraprocessada e álcool</li>
+        </ul>
+      </div>
+      <div class="info-block">
+        <h3>🌈 Compostos Antioxidantes Naturais</h3>
+        <div class="antioxidant-grid">
+          <div class="aox-card">
+            <div class="aox-ring" style="background:conic-gradient(#c0392b 95%, var(--surface2) 0%)"><div class="aox-ring-inner">🍇</div></div>
+            <div class="aox-name">Resveratrol</div>
+            <div class="aox-level">★★★★★</div>
+          </div>
+          <div class="aox-card">
+            <div class="aox-ring" style="background:conic-gradient(#e67e22 88%, var(--surface2) 0%)"><div class="aox-ring-inner">🟡</div></div>
+            <div class="aox-name">Curcumina</div>
+            <div class="aox-level">★★★★★</div>
+          </div>
+          <div class="aox-card">
+            <div class="aox-ring" style="background:conic-gradient(#27ae60 90%, var(--surface2) 0%)"><div class="aox-ring-inner">🍵</div></div>
+            <div class="aox-name">EGCG (chá verde)</div>
+            <div class="aox-level">★★★★★</div>
+          </div>
+          <div class="aox-card">
+            <div class="aox-ring" style="background:conic-gradient(#8e44ad 80%, var(--surface2) 0%)"><div class="aox-ring-inner">🫐</div></div>
+            <div class="aox-name">Antocianinas</div>
+            <div class="aox-level">★★★★☆</div>
+          </div>
+          <div class="aox-card">
+            <div class="aox-ring" style="background:conic-gradient(#2980b9 75%, var(--surface2) 0%)"><div class="aox-ring-inner">☕</div></div>
+            <div class="aox-name">Ác. Clorogênico</div>
+            <div class="aox-level">★★★★☆</div>
+          </div>
+          <div class="aox-card">
+            <div class="aox-ring" style="background:conic-gradient(#c0392b 85%, var(--surface2) 0%)"><div class="aox-ring-inner">🍅</div></div>
+            <div class="aox-name">Licopeno</div>
+            <div class="aox-level">★★★★☆</div>
+          </div>
+        </div>
+      </div>
+      <div class="info-block">
+        <h3>🍽️ Alimentos Campeões em Antioxidantes</h3>
+        <div class="food-grid">
+          <div class="food-item"><div class="food-emoji">🫐</div><div class="food-name">Mirtilo</div></div>
+          <div class="food-item"><div class="food-emoji">🍫</div><div class="food-name">Cacau 70%+</div></div>
+          <div class="food-item"><div class="food-emoji">🟡</div><div class="food-name">Cúrcuma</div></div>
+          <div class="food-item"><div class="food-emoji">🍵</div><div class="food-name">Chá verde</div></div>
+          <div class="food-item"><div class="food-emoji">☕</div><div class="food-name">Café</div></div>
+          <div class="food-item"><div class="food-emoji">🍇</div><div class="food-name">Uva roxa</div></div>
+          <div class="food-item"><div class="food-emoji">🥦</div><div class="food-name">Brócolis</div></div>
+          <div class="food-item"><div class="food-emoji">🍓</div><div class="food-name">Morango</div></div>
+          <div class="food-item"><div class="food-emoji">🌹</div><div class="food-name">Açaí</div></div>
+          <div class="food-item"><div class="food-emoji">🫒</div><div class="food-name">Azeite extra-virgem</div></div>
+        </div>
+      </div>
+      <div class="info-block">
+        <h3>📊 ORAC — Capacidade Antioxidante</h3>
+        <div class="bar-chart">
+          <div class="bar-row"><span class="bar-label">Açaí</span><div class="bar-track"><div class="bar-fill" style="width:95%"></div></div><span class="bar-value">102.700</span></div>
+          <div class="bar-row"><span class="bar-label">Cacau em pó</span><div class="bar-track"><div class="bar-fill" style="width:80%"></div></div><span class="bar-value">80.933</span></div>
+          <div class="bar-row"><span class="bar-label">Mirtilo</span><div class="bar-track"><div class="bar-fill" style="width:62%"></div></div><span class="bar-value">9.621</span></div>
+          <div class="bar-row"><span class="bar-label">Morango</span><div class="bar-track"><div class="bar-fill" style="width:38%"></div></div><span class="bar-value">4.302</span></div>
+          <div class="bar-row"><span class="bar-label">Laranja</span><div class="bar-track"><div class="bar-fill" style="width:22%"></div></div><span class="bar-value">2.103</span></div>
+        </div>
+        <p style="font-size:12px;color:var(--text3);margin-top:8px">*ORAC: µmol TE/100g — valores aproximados</p>
+      </div>
+      <div class="alert tip"><span class="alert-icon">💡</span><div class="alert-text"><strong>Dica Nutricionista:</strong> Varie as cores no prato! Cada cor representa diferentes classes de antioxidantes. A dieta "arco-íris" maximiza a proteção antioxidante total.</div></div>
+    `
+  },
+  jejum: {
+    title: '⏳ Jejum & Ciclo Alimentado',
+    html: `
+      <div class="info-block">
+        <h3>⚡ Fisiologia do Jejum — Linha do Tempo Metabólica</h3>
+        <p>Durante o jejum, o organismo passa por fases metabólicas distintas, priorizando diferentes substratos energéticos para manter a glicemia e proteger órgãos vitais.</p>
+      </div>
+      <div class="fasting-timeline">
+        <div class="ft-item"><div class="ft-time">0–4 horas</div><div class="ft-title">Estado Alimentado (Absorção)</div><div class="ft-desc">Glicose e aminoácidos absorvidos. Insulina alta. Síntese de glicogênio hepático e muscular. Lipogênese ativa. Anabolismo proteico máximo.</div></div>
+        <div class="ft-item"><div class="ft-time">4–8 horas</div><div class="ft-title">Estado Pós-Absortivo</div><div class="ft-desc">Insulina caindo, glucagon subindo. Glicogenólise hepática inicia (quebra de glicogênio). Início de lipólise moderada para energia.</div></div>
+        <div class="ft-item"><div class="ft-time">8–16 horas</div><div class="ft-title">Jejum Curto — Glicogênio se esgota</div><div class="ft-desc">Estoques de glicogênio (~400g) em depleção. Gliconeogênese aumenta. Corpos cetônicos começam a ser produzidos. GH elevado preserva massa muscular.</div></div>
+        <div class="ft-item"><div class="ft-time">16–24 horas</div><div class="ft-title">Cetose Inicial — Autofagia intensa</div><div class="ft-desc">Insulina basal baixíssima. Lipólise intensa — ácidos graxos convertidos em acetil-CoA → corpos cetônicos (β-hidroxibutirato). Autofagia celular (limpeza de proteínas disfuncionais) ativa.</div></div>
+        <div class="ft-item"><div class="ft-time">24–48 horas</div><div class="ft-title">Cetose Plena</div><div class="ft-desc">Cérebro passa a usar 60–70% de energia de cetonas. BDNF aumentado (neuroproteção). Insulina muito baixa. Sensibilidade à insulina restaurada.</div></div>
+        <div class="ft-item"><div class="ft-time">48–72 horas</div><div class="ft-title">Jejum Prolongado — Regeneração imune</div><div class="ft-desc">Stem cells hematopoiéticas reativadas. Renovação de linfócitos. Máxima produção cetogênica. Usado em protocolos médicos supervisionados.</div></div>
+      </div>
+      <div class="info-block">
+        <h3>🏋️ Pré e Pós-Treino — Nutrição Estratégica</h3>
+        <div class="tabs" style="margin-top:12px">
+          <button class="tab active" onclick="showTab('preT',this)">Pré-Treino</button>
+          <button class="tab" onclick="showTab('posT',this)">Pós-Treino</button>
+          <button class="tab" onclick="showTab('cetose',this)">Cetose</button>
+        </div>
+        <div id="preT" class="tab-content active">
+          <ul style="margin-top:12px">
+            <li>30–90 min antes: carboidrato de baixo-médio IG + proteína</li>
+            <li>Objetivo: maximizar glicogênio muscular e elevar aminoácidos plasmáticos</li>
+            <li>Exemplos: aveia com proteína, banana com iogurte grego, batata-doce com frango</li>
+            <li>Cafeína 3–6 mg/kg melhora desempenho aeróbico e força</li>
+          </ul>
+        </div>
+        <div id="posT" class="tab-content">
+          <ul style="margin-top:12px">
+            <li>Janela anabólica: 0–2h pós-treino (mais flexível do que se pensava)</li>
+            <li>20–40g de proteína de alto valor biológico (leucina ≥2,5g para MPS máxima)</li>
+            <li>Carboidrato para repor glicogênio, especialmente em treinos duplos</li>
+            <li>Exemplos: whey + banana, omelete com arroz, frango com batata-doce</li>
+          </ul>
+        </div>
+        <div id="cetose" class="tab-content">
+          <ul style="margin-top:12px">
+            <li>Adaptação cetogênica leva 2–6 semanas</li>
+            <li>Carboidratos {'<'}30–50g/dia mantém cetose nutricional</li>
+            <li>Corpos cetônicos: acetoacetato, β-hidroxibutirato, acetona</li>
+            <li>Benéfico para epilepsia, controle glicêmico e potencialmente longevidade</li>
+            <li>Atenção: desempenho anaeróbico pode ser prejudicado inicialmente</li>
+          </ul>
+        </div>
+      </div>
+      <div class="info-block">
+        <h3>📊 Hormônios no Jejum</h3>
+        <div class="bar-chart">
+          <div class="bar-row"><span class="bar-label">Insulina ↓</span><div class="bar-track"><div class="bar-fill" style="width:10%;background:linear-gradient(90deg,#e74c3c,#c0392b)"></div></div><span class="bar-value">Baixa</span></div>
+          <div class="bar-row"><span class="bar-label">Glucagon ↑</span><div class="bar-track"><div class="bar-fill" style="width:85%"></div></div><span class="bar-value">Alta</span></div>
+          <div class="bar-row"><span class="bar-label">GH ↑↑</span><div class="bar-track"><div class="bar-fill" style="width:90%"></div></div><span class="bar-value">Muito alta</span></div>
+          <div class="bar-row"><span class="bar-label">Cortisol ↑</span><div class="bar-track"><div class="bar-fill" style="width:60%"></div></div><span class="bar-value">Moderada</span></div>
+          <div class="bar-row"><span class="bar-label">Norepinefrina ↑</span><div class="bar-track"><div class="bar-fill" style="width:70%"></div></div><span class="bar-value">Alta</span></div>
+        </div>
+      </div>
+    `
+  },
+  proteinas: {
+    title: '🔗 Proteínas',
+    html: `
+      <div class="info-block">
+        <h3>🔬 Estrutura e Bioquímica</h3>
+        <p>Proteínas são polímeros de aminoácidos ligados por ligações peptídicas (-CO-NH-). Possuem 4 níveis estruturais: primária (sequência), secundária (α-hélice/β-folha), terciária (dobramento 3D) e quaternária (associação de subunidades).</p>
+        <span class="tag">20 Aminoácidos</span><span class="tag gold">9 Essenciais</span><span class="tag blue">Síntese muscular</span>
+      </div>
+      <div class="info-block">
+        <h3>⚡ Aminoácidos Essenciais</h3>
+        <p>O organismo não sintetiza os 9 aminoácidos essenciais — devem vir da dieta:</p>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px">
+          <span class="tag">Histidina</span><span class="tag">Isoleucina</span><span class="tag">Leucina</span>
+          <span class="tag gold">Lisina</span><span class="tag">Metionina</span><span class="tag">Fenilalanina</span>
+          <span class="tag">Treonina</span><span class="tag">Triptofano</span><span class="tag gold">Valina</span>
+        </div>
+        <div class="alert info" style="margin-top:12px"><span class="alert-icon">💡</span><div class="alert-text"><strong>BCAAs:</strong> Leucina, Isoleucina e Valina são aminoácidos de cadeia ramificada — metabolizados diretamente no músculo e potentes estimuladores da mTOR (síntese proteica).</div></div>
+      </div>
+      <div class="info-block">
+        <h3>🍽️ Digestão e Absorção</h3>
+        <ul>
+          <li>Estômago: pepsina e HCl — desnaturação e hidrólise inicial</li>
+          <li>Duodeno: tripsina, quimotripsina (pâncreas) — polipeptídeos</li>
+          <li>Mucosa intestinal: peptidases — di/tripeptídeos e aminoácidos livres</li>
+          <li>Absorção: transportadores SGLT1, PEPT1 — portal hepático</li>
+        </ul>
+      </div>
+      <div class="info-block">
+        <h3>💪 Síntese Proteica Muscular (MPS)</h3>
+        <ul>
+          <li>Leucina é o principal ativador da via mTORC1</li>
+          <li>Dose efetiva: 20–40g proteína/refeição (3g leucina mínimo)</li>
+          <li>Proteína animal tem maior digestibilidade (DIAAS {'>'} 100%)</li>
+          <li>Whey: absorção rápida (ideal pós-treino). Caseína: lenta (noturno)</li>
+        </ul>
+      </div>
+      <div class="info-block">
+        <h3>📊 Qualidade das Proteínas (DIAAS)</h3>
+        <div class="bar-chart">
+          <div class="bar-row"><span class="bar-label">Ovo inteiro</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><span class="bar-value">1.13</span></div>
+          <div class="bar-row"><span class="bar-label">Leite bovino</span><div class="bar-track"><div class="bar-fill" style="width:95%"></div></div><span class="bar-value">1.08</span></div>
+          <div class="bar-row"><span class="bar-label">Frango</span><div class="bar-track"><div class="bar-fill" style="width:92%"></div></div><span class="bar-value">1.08</span></div>
+          <div class="bar-row"><span class="bar-label">Soja</span><div class="bar-track"><div class="bar-fill" style="width:88%"></div></div><span class="bar-value">0.91</span></div>
+          <div class="bar-row"><span class="bar-label">Grão-de-bico</span><div class="bar-track"><div class="bar-fill" style="width:60%"></div></div><span class="bar-value">0.83</span></div>
+          <div class="bar-row"><span class="bar-label">Arroz</span><div class="bar-track"><div class="bar-fill" style="width:50%"></div></div><span class="bar-value">0.59</span></div>
+        </div>
+      </div>
+      <div class="info-block">
+        <h3>🍎 Fontes Proteicas</h3>
+        <div class="food-grid">
+          <div class="food-item"><div class="food-emoji">🥚</div><div class="food-name">Ovos</div></div>
+          <div class="food-item"><div class="food-emoji">🐟</div><div class="food-name">Atum/Salmão</div></div>
+          <div class="food-item"><div class="food-emoji">🍗</div><div class="food-name">Frango</div></div>
+          <div class="food-item"><div class="food-emoji">🫘</div><div class="food-name">Feijão</div></div>
+          <div class="food-item"><div class="food-emoji">🥛</div><div class="food-name">Whey protein</div></div>
+          <div class="food-item"><div class="food-emoji">🟡</div><div class="food-name">Tofu/Tempeh</div></div>
+        </div>
+      </div>
+    `
+  },
+  lipideos: {
+    title: '🫧 Lipídeos',
+    html: `
+      <div class="info-block">
+        <h3>🔬 Classificação dos Lipídeos</h3>
+        <p>Lipídeos são moléculas hidrofóbicas com funções estruturais, energéticas e de sinalização. Incluem triglicerídeos (armazenamento), fosfolipídeos (membranas), esteróis (colesterol, hormônios) e eicosanoides (sinalização inflamatória).</p>
+      </div>
+      <div class="info-block">
+        <h3>⚡ Tipos de Gorduras</h3>
+        <ul>
+          <li><strong>Saturadas:</strong> Sem dupla ligação, sólidas à temperatura ambiente. Em excesso elevam LDL. Fontes: manteiga, coco, carnes gordas.</li>
+          <li><strong>Monoinsaturadas (MUFA):</strong> 1 dupla ligação (ômega-9). Neutras/benéficas para LDL/HDL. Fonte: azeite, abacate, amêndoas.</li>
+          <li><strong>Poli-insaturadas (PUFA):</strong> 2+ duplas ligações. Ômega-3 (DHA/EPA) — anti-inflamatório. Ômega-6 (AA) — pró-inflamatório em excesso.</li>
+          <li><strong>Trans:</strong> Processamento industrial. Elevam LDL, reduzem HDL, aumentam inflamação. Evitar.</li>
+        </ul>
+        <div class="alert danger" style="margin-top:12px"><span class="alert-icon">⚠️</span><div class="alert-text">Gorduras trans industriais aumentam risco cardiovascular mesmo em pequenas quantidades. A OMS estabeleceu meta de eliminação global até 2023.</div></div>
+      </div>
+      <div class="info-block">
+        <h3>🐟 Ômega-3 — Anti-Inflamatório Essencial</h3>
+        <ul>
+          <li><strong>ALA</strong> (α-linolênico): vegetal. Convertido lentamente em EPA/DHA (~5–15%)</li>
+          <li><strong>EPA</strong> (eicosapentaenóico): reduz TXA₂ (pro-inflamatório), promove resolvinas</li>
+          <li><strong>DHA</strong> (docosahexaenóico): estrutural cerebral (40% PUFA do cérebro)</li>
+        </ul>
+      </div>
+      <div class="info-block">
+        <h3>🫀 Colesterol — O Mito Desvendado</h3>
+        <p>O colesterol é essencial: precursor de todos os hormônios esteróides (cortisol, testosterona, estrogênio), vitamina D e ácidos biliares. O colesterol dietético tem menor impacto no LDL do que as gorduras saturadas e trans.</p>
+      </div>
+      <div class="info-block">
+        <h3>🍎 Fontes de Gorduras Boas</h3>
+        <div class="food-grid">
+          <div class="food-item"><div class="food-emoji">🫒</div><div class="food-name">Azeite EV</div></div>
+          <div class="food-item"><div class="food-emoji">🥑</div><div class="food-name">Abacate</div></div>
+          <div class="food-item"><div class="food-emoji">🐟</div><div class="food-name">Salmão</div></div>
+          <div class="food-item"><div class="food-emoji">🌰</div><div class="food-name">Nozes</div></div>
+          <div class="food-item"><div class="food-emoji">🌱</div><div class="food-name">Linhaça</div></div>
+          <div class="food-item"><div class="food-emoji">🥥</div><div class="food-name">Coco</div></div>
+        </div>
+      </div>
+      <table class="nut-table"><thead><tr><th>Tipo</th><th>LDL</th><th>HDL</th><th>Inflamação</th></tr></thead><tbody>
+        <tr><td>Ômega-3 (EPA/DHA)</td><td>↓ levemente</td><td>↑</td><td>↓↓ forte</td></tr>
+        <tr><td>MUFA (ômega-9)</td><td>↓</td><td>→</td><td>↓</td></tr>
+        <tr><td>Saturada</td><td>↑</td><td>↑ leve</td><td>↑ leve</td></tr>
+        <tr><td>Trans</td><td>↑↑</td><td>↓↓</td><td>↑↑ forte</td></tr>
+      </tbody></table>
+    `
+  },
+  carboidratos: {
+    title: '⚡ Carboidratos',
+    html: `
+      <div class="info-block">
+        <h3>🔬 Classificação Bioquímica</h3>
+        <p>Carboidratos são aldoses ou cetoses formadas por C, H e O na proporção (CH₂O)n. Classificam-se em monossacarídeos (glicose, frutose, galactose), dissacarídeos (sacarose, lactose, maltose), oligossacarídeos e polissacarídeos (amido, glicogênio, celulose).</p>
+      </div>
+      <div class="info-block">
+        <h3>⚡ Digestão e Absorção</h3>
+        <ul>
+          <li>Boca: α-amilase salivar inicia digestão do amido</li>
+          <li>Intestino delgado: amilase pancreática → maltose, dextrina</li>
+          <li>Bordas de escova: sacarase, lactase, maltase → monossacarídeos</li>
+          <li>Absorção via SGLT1 (glicose, galactose) e GLUT5 (frutose)</li>
+          <li>Portal hepático → fígado → glicose para corrente sanguínea</li>
+        </ul>
+      </div>
+      <div class="info-block">
+        <h3>📊 Índice Glicêmico e Carga Glicêmica</h3>
+        <p>IG mede a velocidade de elevação da glicemia. Carga Glicêmica (CG = IG × g carboidrato/100) é mais clinicamente relevante.</p>
+        <div class="bar-chart" style="margin-top:12px">
+          <div class="bar-row"><span class="bar-label">Pão branco</span><div class="bar-track"><div class="bar-fill" style="width:75%;background:linear-gradient(90deg,#e74c3c,#c0392b)"></div></div><span class="bar-value">IG 75</span></div>
+          <div class="bar-row"><span class="bar-label">Arroz branco</span><div class="bar-track"><div class="bar-fill" style="width:72%;background:linear-gradient(90deg,#e67e22,#d35400)"></div></div><span class="bar-value">IG 72</span></div>
+          <div class="bar-row"><span class="bar-label">Banana madura</span><div class="bar-track"><div class="bar-fill" style="width:51%;background:linear-gradient(90deg,#f39c12,#e67e22)"></div></div><span class="bar-value">IG 51</span></div>
+          <div class="bar-row"><span class="bar-label">Batata-doce</span><div class="bar-track"><div class="bar-fill" style="width:44%"></div></div><span class="bar-value">IG 44</span></div>
+          <div class="bar-row"><span class="bar-label">Aveia</span><div class="bar-track"><div class="bar-fill" style="width:40%"></div></div><span class="bar-value">IG 40</span></div>
+          <div class="bar-row"><span class="bar-label">Lentilha</span><div class="bar-track"><div class="bar-fill" style="width:28%"></div></div><span class="bar-value">IG 28</span></div>
+        </div>
+      </div>
+      <div class="info-block">
+        <h3>🌾 Fibras — Os Carboidratos Incompletos</h3>
+        <ul>
+          <li><strong>Solúveis</strong> (pectina, β-glucana): formam gel, retardam absorção de glicose e colesterol</li>
+          <li><strong>Insolúveis</strong> (celulose, lignina): aumentam bolo fecal, trânsito intestinal</li>
+          <li>Prebióticos: inulina e FOS alimentam bifidobactérias</li>
+          <li>Recomendação: 25–38g/dia (adultos)</li>
+        </ul>
+      </div>
+      <div class="info-block">
+        <h3>🔋 Glicogênio — O Tanque de Combustível</h3>
+        <p>Polissacarídeo de armazenamento: ~400g muscular (uso local) + ~100g hepático (manutenção da glicemia). Depleção em ~90 min de exercício intenso → fadiga ("bater na parede").</p>
+      </div>
+      <div class="info-block"><h3>🍎 Fontes de Carboidratos</h3>
+        <div class="food-grid">
+          <div class="food-item"><div class="food-emoji">🌾</div><div class="food-name">Aveia</div></div>
+          <div class="food-item"><div class="food-emoji">🍠</div><div class="food-name">Batata-doce</div></div>
+          <div class="food-item"><div class="food-emoji">🍚</div><div class="food-name">Arroz integral</div></div>
+          <div class="food-item"><div class="food-emoji">🫘</div><div class="food-name">Feijão</div></div>
+          <div class="food-item"><div class="food-emoji">🍌</div><div class="food-name">Banana</div></div>
+          <div class="food-item"><div class="food-emoji">🍎</div><div class="food-name">Frutas</div></div>
+        </div>
+      </div>
+    `
+  },
+  funcionais: {
+    title: '🌿 Alimentos Funcionais',
+    html: `
+      <div class="info-block">
+        <h3>🔬 O que são Alimentos Funcionais?</h3>
+        <p>Alimentos funcionais fornecem benefícios à saúde além da nutrição básica, por meio de compostos bioativos que modulam vias metabólicas, inflamação, microbioma e expressão gênica (nutrigenômica).</p>
+      </div>
+      <div class="info-block"><h3>🦠 Probióticos e Prebióticos</h3>
+        <ul>
+          <li><strong>Probióticos:</strong> Microrganismos vivos benéficos (Lactobacillus, Bifidobacterium). Kefir, iogurte, kimchi, kombucha, miso.</li>
+          <li><strong>Prebióticos:</strong> Fibras que alimentam bactérias benéficas. Inulina, FOS, GOS. Fontes: alho, cebola, banana verde, chicória.</li>
+          <li><strong>Simbióticos:</strong> Combinação de probiótico + prebiótico</li>
+          <li><strong>Postbióticos:</strong> Metabólitos produzidos por probióticos (SCFAs, bacteriocinas)</li>
+        </ul>
+      </div>
+      <div class="info-block"><h3>🌱 Compostos Bioativos Relevantes</h3>
+        <div class="food-grid">
+          <div class="food-item"><div class="food-emoji">🟡</div><div class="food-name">Curcumina (cúrcuma)</div></div>
+          <div class="food-item"><div class="food-emoji">🧄</div><div class="food-name">Alicina (alho)</div></div>
+          <div class="food-item"><div class="food-emoji">🫐</div><div class="food-name">Antocianinas</div></div>
+          <div class="food-item"><div class="food-emoji">🍵</div><div class="food-name">EGCG (chá verde)</div></div>
+          <div class="food-item"><div class="food-emoji">🥦</div><div class="food-name">Sulforafano</div></div>
+          <div class="food-item"><div class="food-emoji">🍇</div><div class="food-name">Resveratrol</div></div>
+          <div class="food-item"><div class="food-emoji">🍅</div><div class="food-name">Licopeno</div></div>
+          <div class="food-item"><div class="food-emoji">🌿</div><div class="food-name">Isoflavonas (soja)</div></div>
+        </div>
+      </div>
+      <div class="alert tip"><span class="alert-icon">💡</span><div class="alert-text"><strong>Sulforafano do brócolis:</strong> Ativa a via Nrf2 — aumentando a expressão de mais de 200 genes antioxidantes e de detoxificação. Pico de produção quando o brócolis é cortado e consumido cru ou levemente cozido.</div></div>
+      <table class="nut-table"><thead><tr><th>Alimento</th><th>Composto</th><th>Benefício</th></tr></thead><tbody>
+        <tr><td>🧄 Alho</td><td>Alicina</td><td>Antimicrobiano, cardiovascular</td></tr>
+        <tr><td>🟡 Cúrcuma</td><td>Curcumina</td><td>Anti-inflamatório, hepatoprotetor</td></tr>
+        <tr><td>🍵 Chá verde</td><td>EGCG</td><td>Antioxidante, termogênico</td></tr>
+        <tr><td>🥦 Brócolis</td><td>Sulforafano</td><td>Anticancer (Nrf2)</td></tr>
+        <tr><td>🍇 Uva</td><td>Resveratrol</td><td>Antioxidante, SIRT1</td></tr>
+      </tbody></table>
+    `
+  },
+  metabolismo: {
+    title: '🔄 Metabolismo',
+    html: `
+      <div class="info-block">
+        <h3>⚡ Vias Metabólicas — Visão Geral</h3>
+        <p>O metabolismo envolve reações catabolicas (quebra → ATP) e anabólicas (síntese → gasta ATP). O ATP é a "moeda energética universal" produzida pela mitocôndria via fosforilação oxidativa.</p>
+      </div>
+      <div class="info-block"><h3>🍬 Glicólise (citoplasma)</h3>
+        <ul>
+          <li>1 glicose → 2 piruvato + 2 ATP + 2 NADH</li>
+          <li>Ocorre no citoplasma, não precisa de O₂ (anaeróbia possível)</li>
+          <li>Enzima chave: fosfofrutoquinase-1 (PFK-1) — passo regulatório</li>
+          <li>Produto anaeróbio: lactato (músculo em hipóxia)</li>
+        </ul>
+      </div>
+      <div class="info-block"><h3>🔄 Ciclo de Krebs (mitocôndria)</h3>
+        <ul>
+          <li>Acetil-CoA (2C) + oxaloacetato (4C) → citrato (6C)</li>
+          <li>2 voltas completas por glicose → 6 NADH, 2 FADH₂, 2 GTP</li>
+          <li>Central para catabolismo de carboidratos, gorduras e aminoácidos</li>
+          <li>Intermediários: α-cetoglutarato (glutamato), succinato, malato</li>
+        </ul>
+      </div>
+      <div class="info-block"><h3>⚡ Cadeia Respiratória e ATP</h3>
+        <ul>
+          <li>NADH → Complexo I → Q → Complexo III → Citocromo c → Complexo IV → O₂</li>
+          <li>FADH₂ → Complexo II (entra mais adiante)</li>
+          <li>ATP sintase: força próton-motriz gera ~2,5 ATP/NADH</li>
+          <li>Total por glicose: ~30–32 ATP (teórico ~36)</li>
+        </ul>
+      </div>
+      <div class="info-block"><h3>🔥 β-Oxidação de Ácidos Graxos</h3>
+        <ul>
+          <li>Ácido palmítico (16C) → 8 acetil-CoA + 7 NADH + 7 FADH₂</li>
+          <li>Rende ~129 ATP líquidos (muito mais que glicose por massa)</li>
+          <li>Precisa de carnitina para entrada na mitocôndria</li>
+          <li>Controlada pela razão insulina/glucagon</li>
+        </ul>
+      </div>
+      <div class="info-block"><h3>📊 Rendimento Energético Comparativo</h3>
+        <div class="bar-chart">
+          <div class="bar-row"><span class="bar-label">Ác. Palmítico</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><span class="bar-value">~129 ATP</span></div>
+          <div class="bar-row"><span class="bar-label">Glicose</span><div class="bar-track"><div class="bar-fill" style="width:25%"></div></div><span class="bar-value">~32 ATP</span></div>
+          <div class="bar-row"><span class="bar-label">Leucina</span><div class="bar-track"><div class="bar-fill" style="width:30%"></div></div><span class="bar-value">~42 ATP</span></div>
+        </div>
+      </div>
+    `
+  },
+  intestinal: {
+    title: '🦠 Saúde Intestinal',
+    html: `
+      <div class="info-block">
+        <h3>🦠 Microbioma Intestinal</h3>
+        <p>O intestino humano abriga ~38 trilhões de microrganismos (predominantemente Firmicutes e Bacteroidetes), com genoma coletivo 150× maior que o humano — o "segundo genoma". Regula imunidade, metabolismo, neurologia e humor.</p>
+      </div>
+      <div class="info-block"><h3>🧠 Eixo Intestino-Cérebro</h3>
+        <ul>
+          <li>Nervo vago transmite sinais microbioma → cérebro bidirecionalmente</li>
+          <li>95% da serotonina é produzida no intestino (células enterocromafins)</li>
+          <li>Microbioma influencia ansiedade, depressão e cognição</li>
+          <li>Disbiose intestinal correlaciona com depressão e autismo</li>
+          <li>SCFAs (butirato, propionato) atravessam barreira hematoencefálica</li>
+        </ul>
+      </div>
+      <div class="info-block"><h3>🏛️ Permeabilidade Intestinal ("Leaky Gut")</h3>
+        <ul>
+          <li>Tight junctions (claudina, ocludina, ZO-1) controlam a permeabilidade</li>
+          <li>Disbiose e inflamação comprometem as tight junctions</li>
+          <li>LPS (lipopolissacarídeo) de bactérias gram-negativas passa para corrente sanguínea → endotoxemia metabólica</li>
+          <li>Glutamina é o principal combustível dos enterócitos — mantém barreira</li>
+        </ul>
+      </div>
+      <div class="info-block"><h3>🌱 Estratégias para Saúde Intestinal</h3>
+        <div class="food-grid">
+          <div class="food-item"><div class="food-emoji">🫙</div><div class="food-name">Kefir</div></div>
+          <div class="food-item"><div class="food-emoji">🥬</div><div class="food-name">Chucrute</div></div>
+          <div class="food-item"><div class="food-emoji">🧄</div><div class="food-name">Alho (prebiótico)</div></div>
+          <div class="food-item"><div class="food-emoji">🌾</div><div class="food-name">Aveia (β-glucana)</div></div>
+          <div class="food-item"><div class="food-emoji">🍌</div><div class="food-name">Banana verde</div></div>
+          <div class="food-item"><div class="food-emoji">🫘</div><div class="food-name">Leguminosas</div></div>
+        </div>
+      </div>
+      <div class="alert tip"><span class="alert-icon">💡</span><div class="alert-text"><strong>Butirato:</strong> Ácido graxo de cadeia curta produzido pela fermentação de fibras. Principal combustível dos colonócitos, inibe NF-κB, reduz inflamação e tem efeito anticancerígeno no cólon.</div></div>
+    `
+  },
+  hidratacao: {
+    title: '💧 Hidratação',
+    html: `
+      <div class="info-block">
+        <h3>💧 Equilíbrio Hídrico</h3>
+        <p>A água representa 60% do peso corporal (45–75% dependendo da composição). Distribuição: 2/3 intracelular (ICF) e 1/3 extracelular (ECF = plasma + interstício). A osmolaridade plasmática (~290 mOsm/kg) é mantida por hipotálamo-ADH-rim.</p>
+      </div>
+      <div class="info-block"><h3>⚡ Funções da Água</h3>
+        <ul>
+          <li>Solvente universal — reações bioquímicas</li>
+          <li>Transporte de nutrientes, hormônios e resíduos</li>
+          <li>Termorregulação (suor: 2.430 J/g)</li>
+          <li>Lubrificação articular (líquido sinovial)</li>
+          <li>Cushioning para cérebro e medula</li>
+          <li>Síntese de ATP (fosforilação), digestão e absorção</li>
+        </ul>
+      </div>
+      <div class="info-block"><h3>⚗️ Eletrólitos Principais</h3>
+        <ul>
+          <li><strong>Sódio (Na⁺):</strong> Principal cátion extracelular. Regula osmolaridade e volume do ECF.</li>
+          <li><strong>Potássio (K⁺):</strong> Principal cátion intracelular. Potencial de repouso da membrana.</li>
+          <li><strong>Cloro (Cl⁻):</strong> Equilíbrio ácido-base e pressão osmótica.</li>
+          <li><strong>Bicarbonato (HCO₃⁻):</strong> Tampão pH sanguíneo (7.35–7.45).</li>
+          <li><strong>Magnésio (Mg²⁺):</strong> ATP, enzimas e transmissão neuromuscular.</li>
+        </ul>
+      </div>
+      <div class="info-block"><h3>🏃 Hidratação no Exercício</h3>
+        <ul>
+          <li>Perda de 2% do peso em suor → queda de 10–20% no desempenho</li>
+          <li>Monitorar cor da urina: amarelo-claro = bem hidratado</li>
+          <li>Para exercícios {'>'} 60 min: bebidas com sódio (20–50 mmol/L) + carboidrato</li>
+          <li>Rehidratação pós-exercício: 1,5L por kg perdido</li>
+          <li>Hiponatremia: risco real em ultramaratonistas que bebem só água</li>
+        </ul>
+      </div>
+      <div class="info-block"><h3>📊 Necessidades Diárias</h3>
+        <table class="nut-table"><thead><tr><th>Grupo</th><th>Necessidade</th></tr></thead><tbody>
+          <tr><td>Adulto sedentário</td><td>2,0–2,5 L/dia</td></tr>
+          <tr><td>Atleta leve</td><td>3,0–4,0 L/dia</td></tr>
+          <tr><td>Atleta intenso</td><td>5,0+ L/dia</td></tr>
+          <tr><td>Gestante</td><td>+300 mL/dia</td></tr>
+          <tr><td>Lactante</td><td>+700 mL/dia</td></tr>
+        </tbody></table>
+      </div>
+      <div class="alert tip"><span class="alert-icon">💡</span><div class="alert-text"><strong>Regra prática:</strong> Sede já indica desidratação leve. Beba antes de sentir sede, especialmente em exercício e calor. A cor da urina é o indicador mais prático: clara = hidratado, escura = desidratado.</div></div>
+    `
+  }
+};
+
+// Quiz data
+const quizData = [
+  {
+    q:"Q.1 – Qual das alternativas abaixo descreve corretamente a principal função do hormônio glucagon no processo de gliconeogênese?",
+    opts:[
+      "Ativar a liberação de insulina para reduzir os níveis de glicose.",
+      "Inibir a produção de glicose a partir de aminoácidos.",
+      "Estimular a produção de glicose no fígado e nos rins a partir de moléculas não glicídicas.",
+      "Favorecer a hiperinsulinemia e resistência à insulina.",
+      "Estimular a síntese de glicogênio nos músculos."
+    ],ans:2,
+    exp:"O glucagon é liberado quando a glicemia está baixa. Ele estimula a gliconeogênese no fígado e rins — produção de nova glicose a partir de aminoácidos, lactato e glicerol — para restaurar os níveis sanguíneos de glicose."
+  },
+  {
+    q:"Q.2 – Qual é a principal função da vitamina K no organismo?",
+    opts:[
+      "Produzir hemoglobina no sangue.",
+      "Melhorar a absorção de carboidratos.",
+      "Auxiliar na coagulação do sangue.",
+      "Atuar exclusivamente na digestão de proteínas.",
+      "Participar da produção de energia muscular."
+    ],ans:2,
+    exp:"A vitamina K é cofator da enzima γ-glutamil carboxilase, que ativa os fatores de coagulação dependentes de vitamina K (II, VII, IX e X). Sua deficiência causa distúrbios hemorrágicos."
+  },
+  {
+    q:"Q.3 – Qual das alternativas descreve corretamente a principal função do ácido cítrico no ciclo do ácido cítrico na respiração celular?",
+    opts:[
+      "Transportar elétrons para a cadeia respiratória, onde será gerada mais ATP.",
+      "Converter piruvato em glicose para a célula.",
+      "Transportar oxigênio para as células.",
+      "Oxidar gorduras.",
+      "Liberar dióxido de carbono como resíduo da célula."
+    ],ans:0,
+    exp:"O principal objetivo do ciclo de Krebs é gerar NADH e FADH₂, que carregam elétrons para a cadeia respiratória onde será produzida a maior parte do ATP celular. O CO₂ é liberado como subproduto das reações de descarboxilação."
+  },
+  {
+    q:"Q.4 – Qual das alternativas abaixo descreve corretamente o catabolismo?",
+    opts:[
+      "O catabolismo é o processo que quebra moléculas grandes em menores, liberando energia que pode ser utilizada pelo corpo, realizando glicogenólise, glicólise e lipólise.",
+      "O catabolismo ocorre apenas em organismos multicelulares e não está relacionado com a digestão.",
+      "O catabolismo não utiliza energia e não gera moléculas novas no organismo, favorecendo a gliconeogênese, glicogênese e glicólise.",
+      "Todas as alternativas estão corretas.",
+      "O catabolismo é responsável pela construção de moléculas complexas, utilizando energia na forma de ATP."
+    ],ans:0,
+    exp:"O catabolismo compreende as reações de degradação de moléculas complexas (glicogênio, triglicerídeos, proteínas) em moléculas menores, com liberação de energia na forma de ATP. Inclui glicogenólise, glicólise e lipólise."
+  },
+  {
+    q:"Q.5 – Qual das alternativas descreve corretamente o objetivo principal do ciclo do ácido cítrico (Ciclo de Krebs)?",
+    opts:[
+      "Produzir moléculas de ATP para a célula.",
+      "Produzir glicerol e ácidos graxos.",
+      "Converter o piruvato em glicose.",
+      "Quebrar a glicose em dois piruvatos.",
+      "Gerar mais NADH e FADH₂ para o transporte de elétrons."
+    ],ans:4,
+    exp:"O objetivo central do ciclo de Krebs é gerar NADH e FADH₂ (transportadores de elétrons) que alimentarão a cadeia respiratória para a síntese em larga escala de ATP. Por volta de 2 ATP são gerados diretamente no ciclo (como GTP)."
+  },
+  {
+    q:"Q.6 – Sobre o metabolismo do ferro heme e não heme, qual alternativa está INCORRETA?",
+    opts:[
+      "A deficiência de ferro pode prejudicar o transporte de oxigênio no organismo.",
+      "Feijão e vegetais verde-escuros fornecem ferro não heme.",
+      "Chá e café podem reduzir a absorção do ferro não heme.",
+      "Carnes vermelhas são fontes importantes de ferro heme.",
+      "O ferro heme sofre maior influência de fatores inibidores da absorção intestinal."
+    ],ans:4,
+    exp:"A alternativa incorreta é a (e). É o ferro NÃO HEME que sofre maior influência de inibidores (fitatos, taninos do chá/café, cálcio) e facilitadores (vitamina C). O ferro heme, presente em carnes, possui absorção muito mais eficiente (15–35%) e sofre pouca interferência desses fatores."
+  },
+  {
+    q:"Q.7 – Qual das alternativas abaixo descreve corretamente as vitaminas lipossolúveis?",
+    opts:[
+      "São encontradas exclusivamente em alimentos de origem vegetal.",
+      "São solúveis em água e não podem ser armazenadas no corpo.",
+      "São solúveis em gorduras e não são armazenadas no organismo.",
+      "São solúveis em gorduras e podem ser armazenadas no organismo.",
+      "São vitaminas que não possuem nenhuma função essencial no organismo."
+    ],ans:3,
+    exp:"As vitaminas lipossolúveis (A, D, E e K) se dissolvem em gordura e lipídeos. Por isso são absorvidas junto com gorduras dietéticas e podem ser armazenadas no tecido adiposo e no fígado — o que também significa risco de toxicidade em excesso."
+  },
+  {
+    q:"Q.8 – Sobre ferro heme e não heme, assinale a alternativa INCORRETA:",
+    opts:[
+      "O ferro heme é encontrado principalmente em alimentos de origem animal.",
+      "A vitamina C favorece a absorção do ferro não heme.",
+      "O ferro não heme está presente em vegetais, leguminosas e cereais.",
+      "O ferro heme possui maior biodisponibilidade em comparação ao não heme.",
+      "O ferro não heme é absorvido independentemente da alimentação consumida."
+    ],ans:4,
+    exp:"A alternativa incorreta é a (e). O ferro não heme tem sua absorção amplamente influenciada pelos alimentos consumidos junto: a vitamina C aumenta sua absorção (converte Fe³⁺ em Fe²⁺), enquanto fitatos, oxalatos e taninos a reduzem significativamente."
+  },
+  {
+    q:"Q.9 – Um paciente apresentou dor óssea, pele seca, cefaleia intensa, náuseas e aumento do fígado após uso excessivo de suplementos vitamínicos. Qual substância está diretamente relacionada a esse quadro de hipervitaminose?",
+    opts:[
+      "Calciferol",
+      "Filoquinona",
+      "Ácido pantotênico",
+      "Retinol",
+      "Tocoferol"
+    ],ans:3,
+    exp:"O retinol (vitamina A pré-formada) é a vitamina com maior potencial de toxicidade em excesso. A hipervitaminose A causa cefaleia intensa, hepatomegalia, descamação da pele, dor óssea e é teratogênica em gestantes. O calciferol (vit D) também pode causar toxicidade, mas o quadro descrito é clássico de excesso de retinol."
+  },
+  {
+    q:"Q.10 – Qual alternativa apresenta fontes alimentares importantes de selênio para a defesa antioxidante do organismo?",
+    opts:[
+      "Café, chocolate, amendoim e fígado bovino.",
+      "Vegetais roxos e vermelhos como beterraba, acerola e morango.",
+      "Castanha-do-pará, peixes (atum, sardinha, salmão) e frutos do mar.",
+      "Lácteos, ovos e vegetais vermelho-alaranjados.",
+      "Vegetais verdes escuros, lácteos e fígado bovino."
+    ],ans:2,
+    exp:"O selênio é um mineral componente das selenoproteínas (ex: glutationa peroxidase). Suas principais fontes são a castanha-do-pará (a mais concentrada — 1 a 2 unidades/dia supre a necessidade), peixes como atum e salmão, e frutos do mar."
+  },
+  {
+    q:"Q.11 – Qual das alternativas abaixo melhor descreve o metabolismo no organismo humano?",
+    opts:[
+      "O metabolismo envolve um conjunto de reações químicas responsáveis por funções essenciais como obtenção de energia, síntese de moléculas e degradação de moléculas.",
+      "Todas as questões estão corretas.",
+      "O metabolismo é responsável apenas pela eliminação de resíduos do corpo.",
+      "O metabolismo envolve apenas a respiração celular.",
+      "O metabolismo só ocorre em organismos multicelulares."
+    ],ans:0,
+    exp:"O metabolismo é o conjunto de todas as reações químicas do organismo, incluindo anabolismo (síntese de moléculas complexas) e catabolismo (degradação com liberação de energia). Envolve obtenção de energia, síntese molecular, e eliminação de resíduos."
+  },
+  {
+    q:"Q.12 – Analise as sentenças: I- Glicogênese, lipogênese, hiperinsulinemia e queda do glucagon são características do estado alimentado. II- Cortisol, glucagon, adrenalina, noradrenalina e GH estão associados ao metabolismo. III- Cortisol, glucagon, adrenalina, noradrenalina e GH estão associados ao catabolismo. IV- Insulina, GH, testosterona, glicogênese e lipogênese são características de um indivíduo em catabolismo.",
+    opts:[
+      "I e IV estão falsas.",
+      "III e IV estão falsas.",
+      "I e III estão verdadeiras.",
+      "I, II e III estão verdadeiras.",
+      "Todas as alternativas estão corretas."
+    ],ans:3,
+    exp:"I é verdadeira (estado alimentado = insulina alta, glicogênese, lipogênese, glucagon baixo). II é verdadeira (esses hormônios atuam no metabolismo geral). III é verdadeira (glucagon, cortisol e catecolaminas são hormônios catabólicos). IV é FALSA: insulina, GH e testosterona são anabólicos, não catabólicos. Logo, I, II e III estão verdadeiras."
+  },
+  {
+    q:"Q.13 – Sobre as funções da vitamina B9 (ácido fólico), assinale a alternativa correta:",
+    opts:[
+      "Não possui importância durante a gestação.",
+      "É responsável exclusivamente pela coagulação sanguínea.",
+      "Atua apenas no metabolismo de gordura.",
+      "Participa da formação celular e do desenvolvimento do tubo neural do feto.",
+      "Atua somente na digestão de proteínas."
+    ],ans:3,
+    exp:"O folato (B9) é essencial para a síntese de DNA e divisão celular. Na gestação, é fundamental para o fechamento do tubo neural do feto (entre a 3ª e 4ª semana). Sua deficiência aumenta o risco de defeitos como espinha bífida e anencefalia."
+  },
+  {
+    q:"Q.14 – Qual alternativa descreve corretamente o processo de gliconeogênese?",
+    opts:[
+      "A gliconeogênese ocorre quando o corpo está em estado alimentado, utilizando glicose diretamente dos alimentos.",
+      "A gliconeogênese é o processo de quebra da glicose para formar aminoácidos e ácidos graxos.",
+      "A gliconeogênese ocorre principalmente quando os níveis de glicose estão elevados no sangue, estimulada pela insulina.",
+      "A gliconeogênese ocorre quando o corpo está em jejum ou com baixa glicose no sangue, utilizando proteínas, lactato e gorduras para produzir glicose.",
+      "Todas as alternativas estão corretas."
+    ],ans:3,
+    exp:"A gliconeogênese é a síntese de nova glicose a partir de precursores não glicídicos (aminoácidos, lactato, glicerol), ocorrendo principalmente no fígado e rins durante o jejum ou hipoglicemia. É estimulada pelo glucagon e cortisol, não pela insulina."
+  },
+  {
+    q:"Q.15 – Qual das alternativas descreve corretamente o principal objetivo da cadeia respiratória na respiração celular?",
+    opts:[
+      "Utilizar oxigênio para quebrar moléculas de glicose.",
+      "Favorecer a glicogênese muscular e hepática.",
+      "Produzir CO₂ como resíduo do ciclo do ácido cítrico.",
+      "Gerar glicose para ser utilizada no processo de glicólise.",
+      "Usar os elétrons para gerar ATP e formar água como subproduto."
+    ],ans:4,
+    exp:"Na cadeia transportadora de elétrons (mitocôndria), os elétrons do NADH e FADH₂ fluem pelos complexos I–IV. Esse fluxo bombeia prótons criando um gradiente que alimenta a ATP sintase (fosforilação oxidativa). O O₂ é o aceptor final dos elétrons, formando H₂O."
+  },
+  {
+    q:"Q.16 – Qual das alternativas abaixo descreve corretamente uma informação sobre vitaminas?",
+    opts:[
+      "A vitamina D3 (Colecalciferol) é responsável pela saúde ocular e por melhorar o metabolismo da vitamina C.",
+      "A vitamina B6 (Piridoxina) é responsável por participar na síntese de todos os neurotransmissores.",
+      "A vitamina B12 (Niacina) é conhecida como vitamina B."
+    ],ans:1,
+    exp:"A vitamina B6 (piridoxina), na sua forma ativa PLP (piridoxal fosfato), é cofator de dezenas de reações de transaminação e descarboxilação, participando da síntese de neurotransmissores como serotonina, dopamina, GABA e norepinefrina. A vitamina D3 está ligada ao cálcio e ossos (não à visão), e a vitamina B12 é a cobalamina (não a niacina)."
+  },
+  {
+    q:"Q.17 – Qual das alternativas abaixo está correta sobre anabolismo e catabolismo?",
+    opts:[
+      "O anabolismo e o catabolismo não têm nenhuma relação entre si.",
+      "O anabolismo quebra moléculas grandes em menores, enquanto o catabolismo constrói moléculas complexas.",
+      "O anabolismo libera energia, enquanto o catabolismo conserva energia.",
+      "O anabolismo conserva energia, e o catabolismo libera energia.",
+      "O anabolismo e o catabolismo não têm nenhuma relação entre si."
+    ],ans:3,
+    exp:"O anabolismo constrói moléculas complexas a partir de unidades simples, consumindo (conservando) energia (ATP). O catabolismo degrada moléculas complexas em menores, liberando energia. Ambos são complementares e interdependentes no metabolismo celular."
+  },
+  {
+    q:"Q.18 – Qual das alternativas abaixo descreve corretamente as vitaminas hidrossolúveis?",
+    opts:[
+      "São encontradas exclusivamente em alimentos de origem vegetal.",
+      "São solúveis em água e, geralmente, não são armazenadas no organismo.",
+      "São solúveis em água, mas o excesso é armazenado no fígado.",
+      "São encontradas apenas em alimentos de origem animal.",
+      "São solúveis em gorduras e podem ser armazenadas no corpo."
+    ],ans:1,
+    exp:"As vitaminas hidrossolúveis (complexo B e vitamina C) dissolvem-se em água. Como não são armazenadas significativamente no organismo, o excesso é excretado pela urina — por isso precisam ser consumidas regularmente. Isso também significa menor risco de toxicidade em comparação às lipossolúveis."
+  },
+  {
+    q:"Q.19 – Qual condição está relacionada à deficiência de vitamina B9 (folato) no período gestacional?",
+    opts:[
+      "Escorbuto",
+      "Osteoporose",
+      "Espinha bífida",
+      "Hipertensão arterial",
+      "Raquitismo"
+    ],ans:2,
+    exp:"A deficiência de folato na gestação, especialmente nas primeiras semanas (quando o tubo neural está se formando), aumenta o risco de defeitos do tubo neural como espinha bífida (fusão incompleta da coluna) e anencefalia. Por isso a suplementação é recomendada antes e durante a gravidez."
+  },
+  {
+    q:"Q.20 – Um homem com alimentação pobre em cereais integrais e leguminosas apresentou sinais de deficiência de vitamina B1. Essa carência pode causar qual doença?",
+    opts:[
+      "Raquitismo",
+      "Anemia falciforme",
+      "Beribéri",
+      "Osteoporose",
+      "Escorbuto"
+    ],ans:2,
+    exp:"A deficiência de vitamina B1 (tiamina) causa o beribéri, doença que afeta o sistema nervoso (beribéri seco: neuropatia periférica) e cardiovascular (beribéri úmido: insuficiência cardíaca e edema). A tiamina é cofator da piruvato desidrogenase e da transketolase, essenciais ao metabolismo energético."
+  },
+];
+
+const flashcardsData = [
+  {front:"O que é o ciclo de Krebs?",back:"Série de 8 reações no interior da mitocôndria que oxidam o acetil-CoA, gerando CO₂, NADH, FADH₂ e GTP — fundamentais para a produção de ATP."},
+  {front:"Qual a diferença entre probiótico e prebiótico?",back:"Probiótico = microrganismo vivo benéfico (Lactobacillus). Prebiótico = fibra que alimenta esses microrganismos (inulina, FOS). Simbiótico = combinação dos dois."},
+  {front:"O que são BCAAs?",back:"Aminoácidos de Cadeia Ramificada: Leucina, Isoleucina e Valina. São metabolizados diretamente no músculo e são potentes ativadores da síntese proteica via mTOR."},
+  {front:"O que é ORAC?",back:"Oxygen Radical Absorbance Capacity — medida da capacidade antioxidante in vitro de um alimento, expressa em µmol TE/100g."},
+  {front:"O que é a permeabilidade intestinal?",back:"A capacidade controlada das tight junctions de filtrar substâncias. Quando comprometida (leaky gut), LPS bacteriano entra na corrente sanguínea causando endotoxemia metabólica."},
+  {front:"Qual hormônio controla o uso de gordura como energia?",back:"Glucagon e catecolaminas (epinefrina) ativam a lipólise via adenilil ciclase → AMPc → PKA → fosforilação da lipase hormônio-sensível (HSL)."},
+];
+
+let currentPanel = '';
+let quizIdx = 0;
+let quizScore = 0;
+let fcIdx = 0;
+let visitedPanels = new Set();
+let quizAnswered = false;
+
+// ===== FUNCTIONS =====
+function openPanel(id) {
+  if (!content[id]) return;
+  currentPanel = id;
+  visitedPanels.add(id);
+  updateProgress();
+  document.getElementById('panelTitle').textContent = content[id].title;
+  document.getElementById('panelBody').innerHTML = content[id].html;
+  document.getElementById('overlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+  // Init tabs if present
+  setTimeout(() => {
+    const firstTab = document.querySelector('.tab.active');
+    if (firstTab) firstTab.click();
+  }, 50);
+}
+
+function closeOverlay() {
+  document.getElementById('overlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function closePanel(e) {
+  if (e.target === document.getElementById('overlay')) closeOverlay();
+}
+
+function showTab(id, btn) {
+  const panel = btn.closest('.panel-body') || document.getElementById('panelBody');
+  panel.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  panel.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  const el = document.getElementById(id);
+  if (el) el.classList.add('active');
+}
+
+function showVTab(id, btn) {
+  const panel = btn.closest('.panel-body') || document.getElementById('panelBody');
+  panel.querySelectorAll('.vtab').forEach(t => t.classList.remove('active'));
+  panel.querySelectorAll('.vtab-content').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  const el = document.getElementById(id);
+  if (el) el.classList.add('active');
+}
+
+function toggleDark() {
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  document.getElementById('themeBtn').textContent = isDark ? '🌙' : '☀️';
+}
+
+function scrollToTopics() {
+  document.getElementById('topicsSection').scrollIntoView({behavior:'smooth'});
+}
+
+function updateProgress() {
+  const total = Object.keys(content).length;
+  const visited = visitedPanels.size;
+  const pct = Math.round((visited / total) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressPct').textContent = pct + '%';
+  const modsEl = document.getElementById('progressMods');
+  modsEl.innerHTML = '';
+  visitedPanels.forEach(id => {
+    const span = document.createElement('span');
+    span.className = 'prog-mod';
+    span.textContent = content[id].title.split(' ')[1] || content[id].title;
+    modsEl.appendChild(span);
+  });
+}
+
+// QUIZ
+function showQuiz() {
+  quizIdx = 0; quizScore = 0;
+  document.getElementById('panelTitle').textContent = '🧠 Quiz de Bioquímica';
+  document.getElementById('panelBody').innerHTML = buildQuizHTML();
+  document.getElementById('overlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function buildQuizHTML() {
+  if (quizIdx >= quizData.length) {
+    return `<div class="info-block" style="text-align:center;padding:40px">
+      <div style="font-size:64px;margin-bottom:16px">${quizScore >= 4 ? '🏆' : quizScore >= 2 ? '📚' : '💪'}</div>
+      <h3 style="font-size:24px;margin-bottom:8px">Resultado: ${quizScore}/${quizData.length}</h3>
+      <p style="color:var(--text2)">${quizScore >= 4 ? 'Excelente! Você domina bioquímica da nutrição!' : quizScore >= 2 ? 'Bom! Continue estudando para melhorar.' : 'Continue estudando! A prática leva à perfeição.'}</p>
+      <button class="btn-primary" style="margin-top:20px" onclick="showQuiz()">Tentar Novamente</button>
+    </div>`;
+  }
+  const q = quizData[quizIdx];
+  quizAnswered = false;
+  return `<div class="quiz-card">
+    <div class="quiz-counter">Questão ${quizIdx+1} de ${quizData.length} · Score: ${quizScore}</div>
+    <div class="quiz-q" style="margin-top:12px">${q.q}</div>
+    <div class="quiz-options">
+      ${q.opts.map((o,i)=>`<button class="quiz-opt" onclick="answerQuiz(${i},this)">${String.fromCharCode(97+i)}) ${o}</button>`).join('')}
+    </div>
+    <div class="quiz-feedback" id="qFeedback"></div>
+  </div>`;
+}
+
+function answerQuiz(idx, btn) {
+  if (quizAnswered) return;
+  quizAnswered = true;
+  const q = quizData[quizIdx];
+  const opts = btn.closest('.quiz-options').querySelectorAll('.quiz-opt');
+  opts.forEach((o,i) => {
+    o.style.pointerEvents = 'none';
+    if (i === q.ans) o.classList.add('correct');
+    else if (i === idx) o.classList.add('wrong');
+  });
+  if (idx === q.ans) quizScore++;
+  const fb = document.getElementById('qFeedback');
+  fb.style.display = 'block';
+  fb.style.background = idx === q.ans ? '#e8f5e9' : '#ffebee';
+  fb.style.border = `1px solid ${idx === q.ans ? '#4caf50' : '#f44336'}`;
+  fb.style.padding = '14px';
+  fb.style.borderRadius = '10px';
+  fb.style.color = idx === q.ans ? '#2e7d32' : '#c62828';
+  fb.innerHTML = `<strong>${idx===q.ans ? '✅ Correto!' : '❌ Incorreto!'}</strong><br>${q.exp}<br><br><button class="btn-primary" onclick="nextQuestion()" style="margin-top:8px">Próxima →</button>`;
+}
+
+function nextQuestion() {
+  quizIdx++;
+  document.getElementById('panelBody').innerHTML = buildQuizHTML();
+}
+
+// FLASHCARDS
+function showFlashcards() {
+  fcIdx = 0;
+  document.getElementById('panelTitle').textContent = '📇 Flashcards';
+  document.getElementById('panelBody').innerHTML = buildFlashcardHTML();
+  document.getElementById('overlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function buildFlashcardHTML() {
+  const fc = flashcardsData[fcIdx];
+  return `<div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+      <span style="font-family:'DM Mono',monospace;font-size:13px;color:var(--text3)">${fcIdx+1} / ${flashcardsData.length}</span>
+      <span style="font-size:13px;color:var(--text3)">Clique no card para revelar</span>
+    </div>
+    <div class="flashcard-wrap"><div class="flashcard" id="fc" onclick="flipCard()">
+      <div class="fc-front"><div><div class="fc-text">${fc.front}</div><div class="fc-hint">Toque para revelar</div></div></div>
+      <div class="fc-back"><div><div class="fc-text">${fc.back}</div></div></div>
+    </div></div>
+    <div style="display:flex;justify-content:space-between;margin-top:16px">
+      <button class="btn-secondary" onclick="prevFC()" ${fcIdx===0?'disabled':''}>← Anterior</button>
+      <button class="btn-primary" onclick="nextFC()" ${fcIdx===flashcardsData.length-1?'disabled':''}>Próximo →</button>
+    </div>
+  </div>`;
+}
+
+function flipCard() {
+  document.getElementById('fc').classList.toggle('flipped');
+}
+
+function nextFC() {
+  if (fcIdx < flashcardsData.length-1) { fcIdx++; document.getElementById('panelBody').innerHTML = buildFlashcardHTML(); }
+}
+function prevFC() {
+  if (fcIdx > 0) { fcIdx--; document.getElementById('panelBody').innerHTML = buildFlashcardHTML(); }
+}
+
+// SEARCH
+function handleSearch(val) {
+  const v = val.toLowerCase().trim();
+  if (!v) { document.querySelectorAll('.cat-card').forEach(c => c.style.display = ''); return; }
+  const map = {vitaminas:['vitamina','vit','retinol','folato','cobalamina'],minerais:['mineral','ferro','magnésio','zinco','cálcio','potássio','selênio'],antioxidantes:['antioxidante','radical','oxidativo','polifenol','flavonoide'],jejum:['jejum','intermitente','cetose','glicogênio','cetona'],proteinas:['proteína','aminoácido','bcaa','leucina','mps'],lipideos:['lipídeo','gordura','omega','colesterol','triglicerídeo'],carboidratos:['carboidrato','glicose','índice glicêmico','fibra','açúcar'],funcionais:['funcional','probiótico','prebiótico','bioativo','kefir'],metabolismo:['metabolismo','krebs','glicólise','atp','mitocôndria'],intestinal:['intestinal','microbioma','intestino','disbiose','permeabilidade'],hidratacao:['hidratação','eletrólito','sódio','água','desidratação']};
+  document.querySelectorAll('.cat-card').forEach((card,i) => {
+    const id = Object.keys(map)[i];
+    const matches = map[id]?.some(kw => kw.includes(v) || v.includes(kw.substring(0,4)));
+    card.style.display = matches ? '' : 'none';
+  });
+}
+
+// SCROLL TOP
+window.addEventListener('scroll', () => {
+  const btn = document.getElementById('scrollTop');
+  btn.classList.toggle('visible', window.scrollY > 400);
+});
+
+// ANIMATE progress bar on load
+window.addEventListener('load', () => {
+  setTimeout(() => updateProgress(), 500);
+});
+
+// Keyboard
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeOverlay();
+});
+</script>
+</body>
+</html>
